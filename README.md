@@ -5,7 +5,7 @@
 
 ![db-schema]
 
-[db-schema]: ./images/Screenshot%20(11).png
+[db-schema]: ./weoutside/images/Untitled.png
 ## API Documentation
 
 ## USER AUTHENTICATION/AUTHORIZATION
