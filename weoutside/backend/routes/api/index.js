@@ -1,11 +1,12 @@
 const router = require('express').Router();
+const { setTokenCookie } = require('../../utils/auth')
+const { User } = require('../../db/models');
 
-router.get('/test', (req, res) => {
-    res.send('api test works')
-})
+const { restoreUser } = require('../../utils/auth')
+router.use(restoreUser);
 
-router.post('/test', (req, res) => {
-    res.json({ requestBody: req.body })
-})
+const { requireAuth } = require('../../utils/auth')
+
+
 
 module.exports = router

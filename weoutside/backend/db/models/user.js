@@ -46,9 +46,17 @@ module.exports = (sequelize, DataTypes) => {
         max: 60
       }
     }
-  }, {
-    sequelize,
-    modelName: 'User',
-  });
+  },
+    {//scopes go after sequelize has been initalized at the bottomn
+      sequelize,
+      modelName: 'User',
+      defaultScope: {
+        attributes: {
+          exclude: ['hashedPassword', 'createdAt', 'email']
+        }
+      },
+      scopes: {
+      }
+    });
   return User;
 };
