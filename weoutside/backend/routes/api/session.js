@@ -6,6 +6,26 @@ const bcrypt = require('bcryptjs');
 const { setTokenCookie, restoreUser } = require('../../utils/auth')
 const { User } = require('../../db/models');
 
+//restore session user
+router.get('/', (req, res) => {
+    const { user } = req;
+    console.log('user from req', user);
+    if (user) {
+        const safeUser = {
+            id: user.id,
+            username: user.username,
+            email: user.email
+        }
+        return res.json({
+            user: safeUser
+        });
+    }
+    else {
+        return res.json({ user: null })
+    }
+})
+
+
 //user login
 router.post('/', async (req, res, next) => {
     const { credentials, password } = req.body
