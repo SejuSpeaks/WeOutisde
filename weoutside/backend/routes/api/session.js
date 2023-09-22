@@ -10,7 +10,7 @@ const { User } = require('../../db/models');
 
 
 const validateLogin = [
-    check('credential')
+    check('credentials')
         .exists({ checkFalsy: true })
         .notEmpty()
         .withMessage('Please provide a valid email or username.'),
@@ -30,7 +30,9 @@ router.get('/', (req, res) => {
         const safeUser = {
             id: user.id,
             username: user.username,
-            email: user.email
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName
         }
         return res.json({
             user: safeUser
@@ -55,6 +57,7 @@ router.post('/', validateLogin, async (req, res, next) => {
         }
     })
 
+    console.log('THIS IS USER', user)
 
     if (!user || !bcrypt.compareSync(password, user.hashedPassword)) {
         const err = new Error('Login failed');
@@ -67,7 +70,9 @@ router.post('/', validateLogin, async (req, res, next) => {
     const safeUser = {
         id: user.id,
         username: user.username,
-        email: user.email
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName
     }
 
     setTokenCookie(res, safeUser);

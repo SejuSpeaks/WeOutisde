@@ -45,6 +45,12 @@ module.exports = (sequelize, DataTypes) => {
         min: 60,
         max: 60
       }
+    },
+    firstName: {
+      type: DataTypes.STRING
+    },
+    lastName: {
+      type: DataTypes.STRING
     }
   },
     {//scopes go after sequelize has been initalized at the bottomn
