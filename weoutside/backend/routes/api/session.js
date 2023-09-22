@@ -25,7 +25,7 @@ const validateLogin = [
 //restore session user
 router.get('/', (req, res) => {
     const { user } = req;
-    console.log('user from req', user);
+
     if (user) {
         const safeUser = {
             id: user.id,
@@ -57,7 +57,7 @@ router.post('/', validateLogin, async (req, res, next) => {
         }
     })
 
-    console.log('THIS IS USER', user)
+
 
     if (!user || !bcrypt.compareSync(password, user.hashedPassword)) {
         const err = new Error('Login failed');

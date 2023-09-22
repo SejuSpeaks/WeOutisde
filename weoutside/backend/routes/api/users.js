@@ -49,7 +49,7 @@ router.post('/', validateSignup, async (req, res) => {
         email: user.email
     }
 
-    //console.log(safeUser)
+
 
     setTokenCookie(res, safeUser)
 
