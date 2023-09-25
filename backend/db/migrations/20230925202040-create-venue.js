@@ -2,49 +2,37 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Groups', {
+    await queryInterface.createTable('Venues', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      organizerId: {
+      groupId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Users',
-          key: 'id'
+        references: { //review
+          model: 'Groups',
+          id: 'id'
         }
       },
-      name: {
+      address: {
         type: Sequelize.STRING,
-        allowNull: false,
-      },
-      about: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      type: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      private: {
-        type: Sequelize.BOOLEAN,
         allowNull: false
       },
       city: {
         type: Sequelize.STRING,
-        allowNull: false,
-        //city validator
+        allowNull: false
       },
       state: {
         type: Sequelize.STRING,
-        allowNull: false,
-        //state validator
+        allowNull: false
       },
-      previewImage: {
-        type: Sequelize.STRING,
+      lat: {
+        type: Sequelize.STRING
+      },
+      lng: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -57,6 +45,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Groups');
+    await queryInterface.dropTable('Venues');
   }
 };

@@ -4,6 +4,42 @@
 
 const { Group } = require('../models')
 
+const groups = [
+  {
+    id: 1,
+    organizerId: 3,
+    name: 'Daily Coding',
+    about: 'we code everyday',
+    type: 'Online',
+    private: false,
+    city: 'New York',
+    state: 'New York',
+    previewImage: 'https://picsum.photos/200'
+  },
+  {
+    id: 2,
+    organizerId: 1,
+    name: 'Minecraft',
+    about: 'Just Minecraft dude',
+    type: 'In person',
+    private: false,
+    city: 'Kissimmee',
+    state: 'Florida',
+    previewImage: 'https://picsum.photos/200'
+  },
+  {
+    id: 3,
+    organizerId: 2,
+    name: 'How to live',
+    about: 'community cult',
+    type: 'In person',
+    private: true,
+    city: 'New York',
+    state: 'New York',
+    previewImage: 'https://picsum.photos/200'
+  },
+]
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     /**
@@ -15,39 +51,6 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    const groups = [
-      {
-        organizerId: 10,
-        name: 'Daily Coding',
-        about: 'we code everyday',
-        type: 'Online',
-        private: false,
-        city: 'New York',
-        state: 'New York',
-        previewImage: 'https://picsum.photos/200'
-      },
-      {
-        organizerId: 11,
-        name: 'Minecraft',
-        about: 'Just Minecraft dude',
-        type: 'In person',
-        private: false,
-        city: 'Kissimmee',
-        state: 'Florida',
-        previewImage: 'https://picsum.photos/200'
-      },
-      {
-        organizerId: 12,
-        name: 'How to live',
-        about: 'community cult',
-        type: 'In person',
-        private: true,
-        city: 'New York',
-        state: 'New York',
-        previewImage: 'https://picsum.photos/200'
-      },
-    ]
-
     try {
       await Group.bulkCreate(groups)
     } catch (error) {
@@ -62,6 +65,17 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Groups', null, {});
+
+    for (let group of groups) {
+      try {
+        await Group.destory({
+          where: {
+            id: group.id
+          }
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    }
   }
 };
