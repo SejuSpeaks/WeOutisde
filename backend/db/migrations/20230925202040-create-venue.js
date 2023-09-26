@@ -14,7 +14,8 @@ module.exports = {
         references: { //review
           model: 'Groups',
           id: 'id'
-        }
+        },
+        onDelete: 'cascade'
       },
       address: {
         type: Sequelize.STRING,

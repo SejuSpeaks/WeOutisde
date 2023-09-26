@@ -3,6 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 
 const { Group } = require('../models')
+const options = {};
 
 const groups = [
   {
@@ -65,14 +66,14 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-
     for (let group of groups) {
+      options.tableName = 'Groups'
       try {
-        await Group.destory({
+        await Group.destroy({
           where: {
-            id: group.id
+            name: group.name
           }
-        })
+        }, options)
       } catch (error) {
         console.log(error)
       }

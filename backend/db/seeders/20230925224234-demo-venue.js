@@ -57,7 +57,7 @@ module.exports = {
 
     for (let venue of venues) {
       try {
-        await Venue.destory({
+        await Venue.destroy({
           where: {
             id: venue.id
           }

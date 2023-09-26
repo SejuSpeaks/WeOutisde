@@ -30,8 +30,18 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    lat: DataTypes.STRING,
-    lng: DataTypes.STRING
+    lat: {
+      type: DataTypes.STRING,
+      validate: {
+        isFloat: true
+      }
+    },
+    lng: {
+      type: DataTypes.STRING,
+      validate: {
+        isFloat: true
+      }
+    }
   }, {
     sequelize,
     modelName: 'Venue',
