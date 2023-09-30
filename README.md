@@ -5,7 +5,7 @@
 
 ![db-schema]
 
-[db-schema]: ./weoutside/images/Untitled.png
+[db-schema]: ./images/Untitled.png
 ## API Documentation
 
 ## USER AUTHENTICATION/AUTHORIZATION
@@ -52,7 +52,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /current
+  * URL: /session
   * Body: none
 
 * Successful Response when there is a logged in user
