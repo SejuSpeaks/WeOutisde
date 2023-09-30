@@ -4,11 +4,13 @@ const { restoreUser } = require('../../utils/auth')
 //routers
 const usersRouter = require('./users');
 const sessionRouter = require('./session');
+const groupRouter = require('./groups');
 
 router.use(restoreUser);
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
+router.use('/groups', groupRouter);
 
 router.get('/csrf/restore', (req, res) => {
     const csrfToken = req.csrfToken();

@@ -20,7 +20,13 @@ const members = [ //cohost member pending host
     userId: 1,
     groupId: 3,
     status: 'pending'
-  }
+  },
+  {
+    id: 4,
+    userId: 3,
+    groupId: 1,
+    status: 'member'
+  },
 ];
 module.exports = {
   async up(queryInterface, Sequelize) {

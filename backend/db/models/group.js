@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Group.belongsTo(models.User, { foreignKey: 'organizerId' }),
         Group.hasMany(models.Venue, { foreignKey: 'groupId' }), //review
-        Group.belongsToMany(models.User, { through: models.Membership }),
+        Group.belongsToMany(models.User, { through: models.Membership, as: 'Members' }),
         Group.hasMany(models.GroupImage, { foreignKey: 'groupId' })
 
     }
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       validate: {
-        len: [3, 80],
+        max: 60,
         notEmpty: true
       }
     },
@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         max: 250,
-        min: 25
+        min: 50
       }
     },
     type: {
@@ -61,6 +61,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Group',
+    defaultScope: {
+      attributes: {
+        exclude: []
+      }
+    }
   });
   return Group;
 };
