@@ -6,7 +6,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User, Group, Membership, Event, Venue, GroupImage, sequelize } = require('../../db/models');
-const { route } = require('./users');
+
 
 const ValidateGroup = [
     check('name')
@@ -308,7 +308,7 @@ router.post('/:groupId/venues', validateVenue, async (req, res) => {
             res.status(404)
             res.json({ message: "Group could't be found" })
         }
-        if (group.Members) status = group.Members[0].Membership.status
+        if (group.Members.length) status = group.Members[0].Membership.status
         if (group.organizerId === user.id || status === 'host' || status === 'co-host') {
             const venue = await Venue.create({
                 groupId: req.params.groupId,
@@ -323,5 +323,7 @@ router.post('/:groupId/venues', validateVenue, async (req, res) => {
         }
     }
 })
+
+// module.exports = router
 
 module.exports = router
