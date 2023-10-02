@@ -24,7 +24,11 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         isUrl: true
       }
-    }
+    },
+    preview: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
   }, {
     sequelize,
     modelName: 'EventImage',

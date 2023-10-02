@@ -11,8 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Event.belongsToMany(models.User, { through: models.Attendee })
-      Event.hasMany(models.EventImage, { foreignKey: 'eventId' })
+      Event.belongsToMany(models.User, { through: models.Attendee, as: 'attendee' }),
+        Event.belongsTo(models.Group, { foreignKey: 'groupId' }),
+        Event.hasMany(models.EventImage, { foreignKey: 'eventId' })
     }
   }
   Event.init({
@@ -41,10 +42,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         checkDate(date) {
-          // MM/DD/YYYY format
           const currentDate = new Date
 
-          const [monthProvided, dayProvided, yearProvided] = date.split('/') //parse this
+          const [yearProvided, monthProvided, dayProvided] = date.split('-') //parse this
           const dateProvided = new Date(`${yearProvided}-${monthProvided}-${dayProvided}`)
 
 
@@ -60,11 +60,14 @@ module.exports = (sequelize, DataTypes) => {
         checkEndDate(date) {
           const startDate = this.startDate
 
-          const [monthProvided, dayProvided, yearProvided] = date.split('/')
+
+          const [yearStarted, monthStarted, dayStarted] = startDate.split('-')
+          const [yearProvided, monthProvided, dayProvided] = date.split('-')
+          const dateStarted = new Date(`${yearStarted}-${monthStarted}-${dayStarted}`)
           const endDate = new Date(`${yearProvided}-${monthProvided}-${dayProvided}`)
 
 
-          if (endDate < startDate) throw new Error('End date is less than start date')
+          if (endDate < dateStarted) throw new Error('End date is less than start date')
         }
       }
     },  //has to be after startDate

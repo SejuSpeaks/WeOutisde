@@ -53,7 +53,33 @@ const validateVenue = [
         .isDecimal()
         .withMessage('Longitude is not valid'),
     handleValidationErrors
-]
+];
+
+const validateEvent = [
+    check('venueId')
+        .exists({ checkFalsy: true })
+        .withMessage('Venue does not exist'),
+    check('name')
+        .isLength({ min: 5 })
+        .exists({ checkFalsy: true })
+        .withMessage('Name must be at least 5 characters'),
+    check('type')
+        .isIn(['Online', 'In person'])
+        .exists({ checkFalsy: true })
+        .withMessage('Type must be Online or In person'),
+    check('capacity')
+        .isInt()
+        .exists({ checkFalsy: true })
+        .withMessage('Capacity must be an integer'),
+    check('price')
+        .isFloat()
+        .exists({ checkFalsy: true })
+        .withMessage('Price is invalid'),
+    check('description')
+        .exists({ checkFalsy: true })
+        .withMessage('Description is required'),
+    handleValidationErrors
+];
 
 
 router.post('/', ValidateGroup, async (req, res) => {
@@ -284,6 +310,47 @@ router.get('/:groupId/venues', async (req, res) => {
     }
 })
 
+router.get('/:groupId/events', async (req, res) => {
+    const events = await Event.findAll({
+        where: {
+            groupId: req.params.groupId
+        },
+        include: [
+            {
+                model: Group,
+                include: [
+                    {
+                        model: Venue
+                    }
+                ]
+            },
+            {
+                model: User,
+                as: 'attendee',
+                attributes: []
+            }
+        ],
+        attributes: {
+            include: [[sequelize.fn('COUNT', sequelize.col('attendee.id')), 'numAttending']]
+        },
+        group: [
+            'eventId'
+        ]
+    })
+
+
+    if (!events.length) {
+        res.status(404)
+        res.json({ message: "Group couldn't be found" })
+    }
+
+    res.json({
+        Events: [
+            events
+        ]
+    })
+})
+
 router.post('/:groupId/venues', validateVenue, async (req, res) => {
     let status;
     const { user } = req;
@@ -320,6 +387,45 @@ router.post('/:groupId/venues', validateVenue, async (req, res) => {
             })
 
             res.json(venue)
+        }
+    }
+})
+
+router.post('/:groudId/events', validateEvent, async (req, res) => {
+    let status;
+    const { user } = req
+    const { name, type, capacity, price, description, startDate, endDate } = req.body
+    const group = await Group.findByPk(req.params.groudId, { include: [{ model: User, as: 'Members' }, { model: Venue, attributes: ['id'] }] });
+
+    if (!group) {
+        res.status(404)
+        res.json({ message: "Group couldn't be found" })
+    }
+
+    const venueId = group.Venues[0].id
+    if (group.Members.length) {
+        status = group.Members[0].Membership.status
+    }
+
+    if (user) {
+        if (group.organizerId === user.id || status === 'co-host') {
+            const event = Event.build({
+                groupId: group.id,
+                venueId: venueId,
+                name: name,
+                type: type,
+                capacity: capacity,
+                price: price,
+                description: description,
+                startDate: startDate,
+                endDate: endDate
+            })
+
+            await event.validate()
+
+            await event.save()
+
+            res.json(event)
         }
     }
 })

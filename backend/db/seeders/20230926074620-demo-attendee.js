@@ -20,6 +20,12 @@ const attendees = [
     userId: 3,
     eventId: 2,
     status: 'pending'
+  },
+  {
+    id: 4,
+    userId: 3,
+    eventId: 6,
+    status: 'host'
   }
 
 ];
