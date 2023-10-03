@@ -3,6 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
+  const { Op } = require('sequelize')
   class Membership extends Model {
     /**
      * Helper method for defining associations.
@@ -11,9 +12,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Membership.hasMany(models.Group, { foreignKey: 'id' })
+      Membership.hasMany(models.User, { foreignKey: 'id' })
     }
   }
   Membership.init({
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -32,11 +41,20 @@ module.exports = (sequelize, DataTypes) => {
     },
     status: {
       type: DataTypes.STRING,
-      allowNull: false
+      defaultValue: 'pending'
     }
   }, {
     sequelize,
     modelName: 'Membership',
+    scopes: {
+      notValid: {
+        where: {
+          status: {
+            [Op.ne]: 'pending'
+          }
+        }
+      }
+    }
   });
   return Membership;
 };
