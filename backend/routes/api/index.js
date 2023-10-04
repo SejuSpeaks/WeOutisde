@@ -7,6 +7,8 @@ const sessionRouter = require('./session');
 const groupRouter = require('./groups');
 const venuesRouter = require('./venues');
 const eventsRouter = require('./events');
+const groupImageRouter = require('./group-image');
+const eventImageRouter = require('./event-image');
 
 
 router.use(restoreUser);
@@ -16,6 +18,8 @@ router.use('/users', usersRouter);
 router.use('/groups', groupRouter);
 router.use('/venues', venuesRouter);
 router.use('/events', eventsRouter);
+router.use('/group-images', groupImageRouter);
+router.use('/event-images', eventImageRouter);
 
 router.get('/csrf/restore', (req, res) => {
     const csrfToken = req.csrfToken();

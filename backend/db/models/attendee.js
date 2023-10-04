@@ -3,6 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
+  const { Op } = require('sequelize')
   class Attendee extends Model {
     /**
      * Helper method for defining associations.
@@ -14,6 +15,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Attendee.init({
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -24,14 +31,23 @@ module.exports = (sequelize, DataTypes) => {
     },
     status: {
       type: DataTypes.STRING,
-      allowNull: false,
       validate: {
-        isIn: [['attending', 'waitlist', 'pending', 'host', 'co-host']]
-      }
+        isIn: [['attending', 'pending', 'waitlist', 'host', 'co-host']]
+      },
+      defaultValue: 'pending'
     }
   }, {
     sequelize,
     modelName: 'Attendee',
+    scopes: {
+      notValid: {
+        where: {
+          status: {
+            [Op.ne]: 'pending'
+          }
+        }
+      }
+    }
   });
   return Attendee;
 };

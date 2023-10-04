@@ -100,21 +100,36 @@ router.post('/', ValidateGroup, async (req, res) => {
 })
 
 router.get('/', async (req, res) => {
+    let { page, size } = req.query;
+
+    page = parseInt(page) || 1;
+    size = parseInt(size) || 20;
+    //if page and size arent numbers or less than 0
+    if (isNaN(page) || page < 0) page = 1;
+    if (isNaN(size) || size < 0) size = 20;
+
+    const offset = (page - 1) * size
+
+    console.log(offset, size)
+
     const groups = await Group.findAll({
-        include: [{ //attributes for Memberships query
+        include: [{
             model: User,
             as: 'Members',
             attributes: [],
         }],
-        attributes: { //attributes for group query
+        attributes: {
             include: [
-                [sequelize.fn('COUNT', sequelize.col('Members.id')), 'numMembers'],
+                [sequelize.fn('COUNT', sequelize.col('Users.id')), 'numMembers'],
             ],
         },
         group: [
-            'Group.id',
+            "Users.id",
         ],
+        // limit: size,
+        // offset: offset,
     });
+
 
     res.json({
         Groups: [
@@ -334,7 +349,7 @@ router.get('/:groupId/events', async (req, res) => {
             include: [[sequelize.fn('COUNT', sequelize.col('attendee.id')), 'numAttending']]
         },
         group: [
-            'eventId'
+            'Event.id'
         ]
     })
 
@@ -488,16 +503,17 @@ router.post('/:groupId/members', async (req, res) => {
 
         const membershipStatus = await Membership.findOne({
             where: {
-                groupId: req.params.groupId
+                groupId: req.params.groupId,
+                userId: req.user.id
             }
         })
-
+        //group dosent exist
         if (!group) {
             res.status(404)
             res.json({ message: "Group couldn't be found" })
             return
         }
-
+        //if user has requested or is a member of the group
         if (membershipStatus) {
             status = membershipStatus.status
 
@@ -628,6 +644,63 @@ router.put('/:groupId/members', async (req, res) => {
 
     }
 })
+
+router.delete('/:groupId/members', async (req, res) => {
+    const { userId } = req.body
+    if (req.user) {
+        const group = await Group.findOne({
+            where: {
+                id: req.params.groupId
+            }
+        })
+        //check if group exists
+        if (!group) {
+            res.status(404)
+            res.json({
+                "message": "Group couldn't be found"
+            })
+        }
+
+        //check if user exists
+        const requestedUserToDelete = await User.findByPk(userId)
+        if (!requestedUserToDelete) {
+            res.status(400)
+            res.json({
+                "message": "Validation Error",
+                "errors": {
+                    "memberId": "User couldn't be found"
+                }
+            })
+        }
+        //check if user is organizer of group
+        const organizerId = group.organizerId
+        //check if user is deleting themselves
+        console.log(req.user.id, 'userId', userId)
+        if (req.user.id === userId || req.user.id === organizerId) {
+            //check if the membership exists
+            const requestedUserMembership = await Membership.findOne({
+                where: {
+                    groupId: req.params.groupId,
+                    userId: userId
+                }
+            })
+            if (!requestedUserMembership) {
+                res.status(404)
+                res.json({ message: "Membership does not exists for this User" })
+            }
+            //destory membership
+            await Membership.destroy({
+                where: {
+                    groupId: req.params.groupId,
+                    userId: userId
+                }
+            })
+
+            res.json({ message: "Successfully deleted membership from group" })
+        }
+    }
+})
+
 
 // module.exports = router
 
