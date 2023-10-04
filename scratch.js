@@ -93,8 +93,9 @@
 //     // MM/DD/YYYY format
 //     //specify order to put date in site
 //     const currentDate = new Date
+//     // console.log(date, 'date', currentDate, 'today')
 
-//     const [monthProvided, dayProvided, yearProvided] = date.split('/') //parse this
+//     const [yearProvided, monthProvided, dayProvided] = date.split('-') //parse this
 //     const dateProvided = new Date(`${yearProvided}-${monthProvided}-${dayProvided}`)
 
 
@@ -103,6 +104,13 @@
 //     }
 // }
 
+// checkDate('2021-11-19 20:00:00')
+
+
+/* INSERT INTO Attendees (userId,eventId,status)
+    VALUES (3,6,'host')
+
+    */
 
 // function checkEndDate(date) {
 //     const startDate = this.startDate
