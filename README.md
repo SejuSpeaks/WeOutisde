@@ -669,7 +669,7 @@ Creates and returns a new venue for a group specified by its id
   the group with a status of "co-host"
 * Request
   * Method: POST
-  * URL: /venues/:groupId
+  * URL: /groups/:groupId/venues
   * Headers:
     * Content-Type: application/json
   * Body:
