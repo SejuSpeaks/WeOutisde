@@ -4,6 +4,7 @@ const { User, Group, Membership, Event, Venue, GroupImage, EventImage, Attendee,
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 
 router.delete('/:groupImageId', requireAuth, async (req, res) => {
+    let statusOfUser;
     const image = await GroupImage.findOne({
         where: {
             id: req.params.groupImageId
@@ -12,7 +13,7 @@ router.delete('/:groupImageId', requireAuth, async (req, res) => {
             model: Group,
             include: {
                 model: User,
-                as: 'Members'
+                as: 'Members',
             }
         }
     })
@@ -27,8 +28,11 @@ router.delete('/:groupImageId', requireAuth, async (req, res) => {
     const organizerId = image.Group.organizerId
     console.log(organizerId)
     //check if user is cohost of group
-    const statusOfUser = image.Group.Members[0].Membership.status
-    console.log(statusOfUser)
+    const membershipStatusOfUser = await Membership.findOne({
+        where: { userId: req.user.id, groupId: image.Group.id }
+    })
+
+    if (membershipStatusOfUser) statusOfUser = membershipStatusOfUser.status
 
     if (req.user.id === organizerId || statusOfUser === 'co-host') {
         await GroupImage.destroy({
@@ -38,6 +42,9 @@ router.delete('/:groupImageId', requireAuth, async (req, res) => {
         })
 
         res.json({ message: "Successfully deleted" })
+    } else {
+        res.status(403)
+        res.json({ message: "Forbidden" })
     }
 })
 

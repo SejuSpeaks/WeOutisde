@@ -29,7 +29,7 @@ const validateVenue = [
 ];
 
 
-router.put('/:venueId', validateVenue, async (req, res) => {
+router.put('/:venueId', requireAuth, validateVenue, async (req, res) => {
     let status;
     let group;
     const { address, city, state, lat, lng } = req.body
@@ -52,7 +52,11 @@ router.put('/:venueId', validateVenue, async (req, res) => {
         }
 
 
-        if (group.Members.length) status = group.Members[0].Membership.status
+        const membershipStatusOfUser = await Membership.findOne({
+            where: { userId: req.user.id, groupId: group.id }
+        })
+
+        if (membershipStatusOfUser) status = membershipStatusOfUser.status
 
         if (req.user.id === group.organizerId || status === 'co-host') {
             venue.address = address
@@ -63,6 +67,9 @@ router.put('/:venueId', validateVenue, async (req, res) => {
 
             venue.save()
             res.json(venue)
+        } else {
+            res.status(403)
+            res.json({ message: "Forbidden" })
         }
 
     }

@@ -11,10 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Group.belongsTo(models.User, { foreignKey: 'organizerId' }),
-        Group.hasMany(models.Venue, { foreignKey: 'groupId' }), //review
+      Group.belongsTo(models.User, { foreignKey: 'organizerId', as: 'Organizer' }),
+        Group.hasMany(models.Venue, { foreignKey: 'groupId', as: 'Venues' }), //review
         Group.belongsToMany(models.User, { through: models.Membership, as: 'Members' }),
-        Group.hasMany(models.GroupImage, { foreignKey: 'groupId' }),
+        Group.hasMany(models.GroupImage, { foreignKey: 'groupId', as: 'GroupImages' }),
         Group.hasMany(models.Event, { foreignKey: 'groupId' })
 
     }

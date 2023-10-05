@@ -24,7 +24,7 @@ const attendees = [
   {
     id: 4,
     userId: 3,
-    eventId: 6,
+    eventId: 3,
     status: 'host'
   }
 
@@ -40,7 +40,11 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await Attendee.bulkCreate(attendees, { validate: true })
+    try {
+      await Attendee.bulkCreate(attendees, { validate: true })
+    } catch (error) {
+      console.log(error)
+    }
   },
 
   async down(queryInterface, Sequelize) {

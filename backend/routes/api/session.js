@@ -5,12 +5,12 @@ const bcrypt = require('bcryptjs');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
-const { setTokenCookie, restoreUser } = require('../../utils/auth')
+const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth')
 const { User } = require('../../db/models');
 
 
 const validateLogin = [
-    check('credentials')
+    check('credential')
         .exists({ checkFalsy: true })
         .notEmpty()
         .withMessage('Please provide a valid email or username.'),
@@ -46,13 +46,14 @@ router.get('/', (req, res) => {
 
 //user login
 router.post('/', validateLogin, async (req, res, next) => {
-    const { credentials, password } = req.body
+    const { credential, password } = req.body
+    console.log(credential)
 
     const user = await User.unscoped().findOne({
         where: {
             [Op.or]: {
-                username: credentials,
-                email: credentials
+                username: credential,
+                email: credential
             }
         }
     })

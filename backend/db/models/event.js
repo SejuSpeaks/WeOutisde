@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Event.belongsToMany(models.User, { through: models.Attendee, as: 'attendee' }),
         Event.belongsTo(models.Group, { foreignKey: 'groupId' }),
-        Event.hasMany(models.EventImage, { foreignKey: 'eventId' })
+        Event.hasMany(models.EventImage, { foreignKey: 'eventId', as: 'EventImages' })
     }
   }
   Event.init({
