@@ -146,9 +146,9 @@ router.get('/', async (req, res) => {
                 ],
             ],
         },
-        // group: [
-        //     "Users.id",
-        // ],
+        group: [
+            "Memberships.id",
+        ],
         limit: size,
         offset: offset,
     });
@@ -178,7 +178,7 @@ router.get('/current', requireAuth, async (req, res) => {
                     [sequelize.fn('COUNT', sequelize.col('Members.id')), 'numMembers'],
                 ]
             },
-            group: ['Group.id']
+            group: ['Members.id']
         })
         res.json({
             Groups: [
@@ -221,7 +221,7 @@ router.get('/:groupId', async (req, res) => {
         group: [
             'Members.id',
             'GroupImages.id',
-            'Venues.id'
+            'Venues.id',
         ]
 
     })

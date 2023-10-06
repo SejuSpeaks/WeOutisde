@@ -11,7 +11,6 @@ if (process.env.NODE_ENV === 'production') {
 
 const groups = [
   {
-    id: 1,
     organizerId: 3,
     name: 'Daily Coding',
     about: 'we code everyday',
@@ -22,7 +21,6 @@ const groups = [
     previewImage: 'https://picsum.photos/200'
   },
   {
-    id: 2,
     organizerId: 1,
     name: 'Minecraft',
     about: 'Just Minecraft dude',
@@ -33,7 +31,6 @@ const groups = [
     previewImage: 'https://picsum.photos/200'
   },
   {
-    id: 3,
     organizerId: 2,
     name: 'How to live',
     about: 'community cult',
@@ -57,7 +54,7 @@ module.exports = {
      * }], {});
     */
     try {
-      await Group.bulkCreate(groups)
+      await Group.bulkCreate(groups, options)
     } catch (error) {
       console.log(error)
     }

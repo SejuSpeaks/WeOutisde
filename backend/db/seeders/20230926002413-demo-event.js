@@ -9,7 +9,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 const events = [
   {
-    id: 1,
     groupId: 3,
     venueId: 1,
     name: 'go touch grass',
@@ -21,7 +20,6 @@ const events = [
     endDate: '10/31/2024'
   },
   {
-    id: 2,
     groupId: 1,
     venueId: 3,
     name: 'The Minecraft multiverse',
@@ -33,7 +31,7 @@ const events = [
     endDate: '12/12/2121'
   },
   {
-    id: 3,
+
     groupId: 2,
     venueId: 2,
     name: 'Yoga class',

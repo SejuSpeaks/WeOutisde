@@ -9,25 +9,21 @@ if (process.env.NODE_ENV === 'production') {
 }
 const members = [ //cohost member pending host
   {
-    id: 1,
     userId: 2,
     groupId: 2,
     status: 'host'
   },
   {
-    id: 2,
     userId: 3,
     groupId: 1,
     status: 'member'
   },
   {
-    id: 3,
     userId: 1,
     groupId: 3,
     status: 'pending'
   },
   {
-    id: 4,
     userId: 3,
     groupId: 1,
     status: 'member'

@@ -9,25 +9,25 @@ if (process.env.NODE_ENV === 'production') {
 }
 const attendees = [
   {
-    id: 1,
+
     userId: 2,
     eventId: 3,
     status: 'attending'
   },
   {
-    id: 2,
+
     userId: 1,
     eventId: 1,
     status: 'waitlist'
   },
   {
-    id: 3,
+
     userId: 3,
     eventId: 2,
     status: 'pending'
   },
   {
-    id: 4,
+
     userId: 3,
     eventId: 3,
     status: 'host'

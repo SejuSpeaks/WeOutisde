@@ -9,7 +9,6 @@ if (process.env.NODE_ENV === 'production') {
 
 const venues = [
   {
-    id: 1,
     groupId: 3,
     address: '1155 Obsidian Street',
     city: 'Netherand',
@@ -18,7 +17,6 @@ const venues = [
     lng: '553.2348'
   },
   {
-    id: 2,
     groupId: 1,
     address: 'John young prk',
     city: 'Kissimmee',
@@ -27,7 +25,6 @@ const venues = [
     lng: '3345.2345348'
   },
   {
-    id: 3,
     groupId: 2,
     address: 'The Kove',
     city: 'Orlando',
