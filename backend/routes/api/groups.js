@@ -56,9 +56,6 @@ const validateVenue = [ //touched
     handleValidationErrors
 ];
 const validateEvent = [
-    check('venueId')
-        .exists({ checkFalsy: true })
-        .withMessage('Venue does not exist'),
     check('name')
         .isLength({ min: 5 })
         .exists({ checkFalsy: true })

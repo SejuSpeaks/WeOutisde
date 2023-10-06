@@ -8,9 +8,6 @@ const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User, Group, Membership, Event, Venue, GroupImage, EventImage, Attendee, sequelize } = require('../../db/models');
 
 const validateEvent = [
-    check('venueId')
-        .exists({ checkFalsy: true })
-        .withMessage('Venue does not exist'),
     check('name')
         .isLength({ min: 5 })
         .exists({ checkFalsy: true })
