@@ -19,7 +19,7 @@ module.exports = {
           model: 'Groups',
           key: 'id'
         },
-        onDelete: 'cascade'
+
       },
       venueId: {
         type: Sequelize.INTEGER,
@@ -28,7 +28,7 @@ module.exports = {
           model: 'Venues',
           key: 'id'
         },
-        onDelete: 'cascade'
+
       },
       name: {
         type: Sequelize.STRING,

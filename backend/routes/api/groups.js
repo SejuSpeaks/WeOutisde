@@ -189,7 +189,7 @@ router.get('/current', requireAuth, async (req, res) => {
 
 })
 
-router.get('/:groupId', async (req, res) => {
+router.get('/:groupId', async (req, res) => { //fix
 
     const group = await Group.findOne({
         where: {

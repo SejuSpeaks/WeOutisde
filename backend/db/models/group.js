@@ -17,10 +17,11 @@ module.exports = (sequelize, DataTypes) => {
           through: models.Membership,
           as: 'Members',
           foreignKey: 'groupId',
-          otherKey: 'userId'
+          otherKey: 'userId',
+          onDelete: 'cascade'
         }),
-        Group.hasMany(models.GroupImage, { foreignKey: 'groupId', as: 'GroupImages' }),
-        Group.hasMany(models.Event, { foreignKey: 'groupId' })
+        Group.hasMany(models.GroupImage, { foreignKey: 'groupId', as: 'GroupImages', onDelete: 'cascade' }),
+        Group.hasMany(models.Event, { foreignKey: 'groupId', onDelete: 'cascade' })
 
     }
   }
