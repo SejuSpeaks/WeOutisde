@@ -7,7 +7,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User, Group, Membership, Event, Venue, GroupImage, sequelize } = require('../../db/models');
 
-const validateVenue = [
+const validateVenue = [ //touched
     check('address')
         .exists({ checkFalsy: true })
         .withMessage('Street address is required'),
@@ -19,13 +19,11 @@ const validateVenue = [
         .withMessage('State is required'),
     check('lat')
         .exists({ checkFalsy: true })
-        .isLength({ min: -90, max: 90 })
-        .isDecimal()
+        .isFloat({ min: -90, max: 90 })
         .withMessage('Latitude is not valid'),
     check('lng')
         .exists({ checkFalsy: true })
-        .isLatLong()
-        .isDecimal()
+        .isFloat({ min: -180, max: 180 })
         .withMessage('Longitude is not valid'),
     handleValidationErrors
 ];

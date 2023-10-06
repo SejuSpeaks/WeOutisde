@@ -38,7 +38,7 @@ const validateEvent = [
         }),
     check('endDate')
         .custom((value, { req }) => {
-            const startDate = Date(req.body.startDate)
+            const startDate = new Date(req.body.startDate)
             if (startDate > value) throw new Error('End date is less than Start date')
             return true
         }),
