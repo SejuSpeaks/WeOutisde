@@ -95,12 +95,11 @@ router.get('/', validateQuery, async (req, res) => { //fix filters
         ],
         where,
         attributes: {
-            include: [[sequelize.literal(`(SELECT COUNT(*) FROM Attendees WHERE Attendees.eventId = \`Event\`.id )`), 'numAttending']]
+            include: [[sequelize.literal(`(SELECT COUNT(*) FROM Attendees WHERE Attendees.eventId = Event.id )`), 'numAttending']]
         },
-        // group: [
-        //     'Event.id',
-        //     'Group.Venues.id'
-        // ],
+        group: [
+            'Attendees.id'
+        ],
         limit: size,
         offset: offset
     })

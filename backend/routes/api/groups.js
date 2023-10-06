@@ -147,7 +147,7 @@ router.get('/', async (req, res) => {
             ],
         },
         group: [
-            "Memberships.id",
+            "Members.id",
         ],
         limit: size,
         offset: offset,
