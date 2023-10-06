@@ -44,15 +44,22 @@ const validateQuery = [
         .withMessage('Size must be greater than or equal to 1'),
     check('name')
         .optional()
-        .isAlpha()
-        .withMessage("Name must be a string"),
+        .custom(value => {
+            if (!/^[a-zA-Z\s]+$/.test(value)) {
+                throw new Error('Name must be a string');
+            }
+            return true;
+        }),
     check('type')
         .optional()
         .isIn(['Online', 'In person'])
         .withMessage("Type must be 'Online' or 'In Person"),
     check('startDate')
         .optional()
-        .isDate()
+        .custom(value => {
+            if (!Date.parse(value)) throw new Error('must be valid date')
+            return true
+        })
         .withMessage("Start date must be a valid datetime"),
     handleValidationErrors
 ];
@@ -61,7 +68,7 @@ const validateQuery = [
 
 router.get('/', validateQuery, async (req, res) => { //fix filters
     let { page, size, name, type, startDate } = req.query;
-
+    console.log(name)
     page = parseInt(page) || 1;
     size = parseInt(size) || 20;
 
