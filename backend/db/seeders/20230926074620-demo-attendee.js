@@ -59,16 +59,9 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    for (let attendee of attendees) {
-      try {
-        await Attendee.destroy({
-          where: {
-            id: attendee.id
-          }
-        })
-      } catch (error) {
-        console.log(error)
-      }
-    }
+    await Attendee.destroy({
+      where: {},
+      truncate: true
+    })
   }
 };

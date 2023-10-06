@@ -59,18 +59,10 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
 
-    for (let userInfo of users) {
-      options.tableName = 'Users'
-      try {
-        await User.destroy({
-          where: {
-            email: userInfo.email
-          },
-        })
-      } catch (error) {
-        console.log(error)
-      }
-    }
+    await User.destroy({
+      where: {},
+      truncate: true
+    })
 
     // await queryInterface.bulkDelete('Users', null, {});
 

@@ -49,16 +49,10 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    for (let image of images) {
-      try {
-        await GroupImage.destroy({
-          where: {
-            id: image.id
-          }
-        })
-      } catch (error) {
-        console.log(error)
-      }
-    }
+    await GroupImage.destroy({
+      where: {},
+      truncate: true
+    })
   }
+
 };

@@ -57,16 +57,9 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
 
-    for (let venue of venues) {
-      try {
-        await Venue.destroy({
-          where: {
-            id: venue.id
-          }
-        })
-      } catch (error) {
-        console.log(error)
-      }
-    }
+    await Venue.destroy({
+      where: {},
+      truncate: true
+    })
   }
 };

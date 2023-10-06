@@ -66,16 +66,9 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
 
-    for (let event of events) {
-      try {
-        await Event.destroy({
-          where: {
-            id: event.id
-          }
-        })
-      } catch (error) {
-        console.log(error)
-      }
-    }
+    await Event.destroy({
+      where: {},
+      truncate: true
+    })
   }
 };

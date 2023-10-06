@@ -67,17 +67,9 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    for (let group of groups) {
-      options.tableName = 'Groups'
-      try {
-        await Group.destroy({
-          where: {
-            name: group.name
-          }
-        })
-      } catch (error) {
-        console.log(error)
-      }
-    }
+    await Group.destroy({
+      where: {},
+      truncate: true
+    })
   }
 };

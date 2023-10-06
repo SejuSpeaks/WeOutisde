@@ -54,17 +54,10 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    for (let member of members) {
-      try {
-        await Membership.destroy({
-          where: {
-            id: member.id
-          }
-        })
-      } catch (error) {
-        console.log(error)
-      }
-    }
+    await Membership.destroy({
+      where: {},
+      truncate: true
+    })
   }
 
 };
