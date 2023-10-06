@@ -90,28 +90,21 @@ router.get('/', validateQuery, async (req, res) => { //fix filters
             {
                 model: User,
                 as: 'attendee',
-                attributes: []
+                attributes: ['id']
             }
         ],
         where,
-        attributes: {
-            include: [[sequelize.fn('COUNT', sequelize.col('attendee.id')), 'numAttending']],
-        },
-        group: [
-            'Event.id',
-            'Group.id',
-            'Group.Venues.id',
-            'attendee.Attendee.id'
-        ],
         limit: size,
         offset: offset,
-        subQuery: false
     })
-
+    const returnEvents = events.map(obj => {
+        const event = obj.toJSON()
+        event.numAttending = event.attendee.length
+        delete event.attendee
+        return event
+    })
     res.json({
-        Events: [
-            events
-        ]
+        Events: returnEvents
     });
 })
 
