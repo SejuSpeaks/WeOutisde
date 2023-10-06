@@ -272,13 +272,11 @@ router.delete('/:groupId', requireAuth, async (req, res) => {
         }
         //user validation
         if (group.organizerId === req.user.id) {
-            try {
-                await Group.destroy({ where: { id: groupId } })
-                res.json({ message: "Successfully deleted" })
 
-            } catch (error) {
-                console.log(error)
-            }
+            await Group.destroy({ where: { id: groupId } })
+            res.json({ message: "Successfully deleted" })
+
+
         } else {
             res.status(403)
             res.json({ message: "Forbidden" })

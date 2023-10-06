@@ -19,8 +19,8 @@ module.exports = {
         references: {
           model: 'Groups',
           key: 'id',
-          onDelete: 'cascade'
         },
+        onDelete: 'cascade'
 
       },
       url: {

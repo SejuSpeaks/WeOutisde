@@ -18,8 +18,8 @@ module.exports = {
         references: { //review
           model: 'Groups',
           id: 'id',
-          onDelete: 'cascade'
         },
+        onDelete: 'cascade'
 
       },
       address: {

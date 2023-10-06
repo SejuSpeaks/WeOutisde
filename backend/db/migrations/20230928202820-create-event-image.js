@@ -19,8 +19,8 @@ module.exports = {
         references: {
           model: 'Events',
           key: 'id',
-          onDelete: 'cascade'
         },
+        onDelete: 'cascade'
 
       },
       url: {

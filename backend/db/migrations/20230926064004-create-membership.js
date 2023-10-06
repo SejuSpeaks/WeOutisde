@@ -20,8 +20,8 @@ module.exports = {
         references: {
           model: 'Users',
           key: 'id',
-          onDelete: 'cascade'
         },
+        onDelete: 'cascade'
 
       },
       groupId: {
@@ -30,8 +30,8 @@ module.exports = {
         references: {
           model: 'Groups',
           key: 'id',
-          onDelete: 'cascade'
         },
+        onDelete: 'cascade'
       },
       status: {
         type: Sequelize.STRING

@@ -19,8 +19,8 @@ module.exports = {
         references: {
           model: 'Users',
           key: 'id',
-          onDelete: 'cascade'
         },
+        onDelete: 'cascade'
 
       },
       eventId: {
@@ -29,8 +29,8 @@ module.exports = {
         references: {
           model: 'Events',
           key: 'id',
-          onDelete: 'cascade'
         },
+        onDelete: 'cascade'
       },
       status: {
         type: Sequelize.STRING,
