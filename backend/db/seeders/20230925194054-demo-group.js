@@ -5,6 +5,10 @@
 const { Group } = require('../models')
 const options = {};
 
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA
+}
+
 const groups = [
   {
     id: 1,
@@ -53,7 +57,7 @@ module.exports = {
      * }], {});
     */
     try {
-      await Group.bulkCreate(groups)
+      await Group.bulkCreate(groups, options)
     } catch (error) {
       console.log(error)
     }
