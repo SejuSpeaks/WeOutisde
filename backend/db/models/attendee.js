@@ -24,12 +24,10 @@ module.exports = (sequelize, DataTypes) => {
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      onDelete: 'cascade'
     },
     eventId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      onDelete: 'cascade'
     },
     status: {
       type: DataTypes.STRING,

@@ -135,7 +135,7 @@ router.get('/:eventId', async (req, res) => {
             include: [[sequelize.fn('COUNT', sequelize.col('attendee.id')), 'numAttending']]
         },
         group: [
-
+            'Event.id',
             'Group.Venues.id',
             'EventImages.id',
             'Group.id'
