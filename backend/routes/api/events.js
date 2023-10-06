@@ -98,7 +98,7 @@ router.get('/', validateQuery, async (req, res) => { //fix filters
             include: [[sequelize.literal(`(SELECT COUNT(*) FROM Attendees WHERE Attendees.eventId = Event.id )`), 'numAttending']]
         },
         group: [
-            'Attendees.id'
+            'Event.id'
         ],
         limit: size,
         offset: offset

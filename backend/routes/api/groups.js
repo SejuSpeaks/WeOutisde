@@ -118,18 +118,6 @@ router.post('/', requireAuth, ValidateGroup, async (req, res) => {
 })
 
 router.get('/', async (req, res) => {
-    let { page, size } = req.query;
-
-    page = parseInt(page) || 1;
-    size = parseInt(size) || 20;
-    //if page and size arent numbers or less than 0
-    if (isNaN(page) || page < 0) page = 1;
-    if (isNaN(size) || size < 0) size = 20;
-
-    const offset = (page - 1) * size
-
-    console.log(offset, size)
-
     const groups = await Group.findAll({
         include: [{
             model: User,
@@ -139,18 +127,17 @@ router.get('/', async (req, res) => {
         attributes: {
             include: [
                 [
-                    sequelize.literal(
-                        `(SELECT COUNT(*) FROM Memberships WHERE Memberships.groupId = \`Group\`.id)`
-                    ),
-                    "numMembers",
+                    // sequelize.literal(
+                    //     `(SELECT COUNT(*) FROM Memberships WHERE Memberships.groupId = \`Group\`.id)`
+                    // ),
+                    // "numMembers",
+                    sequelize.fn('COUNT', sequelize.col('Members.id')), 'numMembers'
                 ],
             ],
         },
         group: [
             'Group.id'
-        ],
-        limit: size,
-        offset: offset,
+        ]
     });
 
 
