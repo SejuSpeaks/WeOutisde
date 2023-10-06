@@ -18,7 +18,8 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'Groups',
-          key: 'id'
+          key: 'id',
+          onDelete: 'cascade'
         },
 
       },

@@ -138,7 +138,8 @@ router.get('/:eventId', async (req, res) => {
             'Event.id',
             'Group.Venues.id',
             'EventImages.id',
-            'Group.id'
+            'Group.id',
+            'attnedee.Attendee.id'
         ]
     })
 

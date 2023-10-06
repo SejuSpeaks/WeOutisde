@@ -17,7 +17,8 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { //review
           model: 'Groups',
-          id: 'id'
+          id: 'id',
+          onDelete: 'cascade'
         },
 
       },

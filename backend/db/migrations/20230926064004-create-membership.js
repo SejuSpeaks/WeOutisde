@@ -19,7 +19,8 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'Users',
-          key: 'id'
+          key: 'id',
+          onDelete: 'cascade'
         },
 
       },
@@ -28,9 +29,9 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'Groups',
-          key: 'id'
+          key: 'id',
+          onDelete: 'cascade'
         },
-        onDelete: 'cascade'
       },
       status: {
         type: Sequelize.STRING
