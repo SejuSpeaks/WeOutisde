@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
         through: models.Attendee,
         as: 'attendee',
         foreignKey: 'eventId',
-        otherKey: 'userId'
+        otherKey: 'userId',
+        onDelete: 'cascade'
       }),
         Event.belongsTo(models.Group, { foreignKey: 'groupId' }),
         Event.hasMany(models.EventImage, { foreignKey: 'eventId', as: 'EventImages', onDelete: 'cascade' })

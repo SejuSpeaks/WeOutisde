@@ -100,7 +100,8 @@ router.get('/', validateQuery, async (req, res) => { //fix filters
         group: [
             'Event.id',
             'Group.id',
-            'Group.Venues.id'
+            'Group.Venues.id',
+            'attendee.Attendee.id'
         ],
         limit: size,
         offset: offset,

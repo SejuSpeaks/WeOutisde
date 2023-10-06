@@ -387,7 +387,8 @@ router.get('/:groupId/events', async (req, res) => {
         },
         group: [
             'Event.id',
-            'Group.Venues.id'
+            'Group.Venues.id',
+            'Group.id'
         ]
     })
 
