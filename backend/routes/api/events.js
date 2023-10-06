@@ -98,7 +98,8 @@ router.get('/', validateQuery, async (req, res) => { //fix filters
             include: [[sequelize.fn('COUNT', sequelize.col('attendee.id')), 'numAttending']]
         },
         group: [
-            'Event.id'
+            'Event.id',
+            'Group.id'
         ],
         attributes: {
             limit: size,
