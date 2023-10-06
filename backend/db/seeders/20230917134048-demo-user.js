@@ -48,7 +48,7 @@ module.exports = {
      * }], {});
     */
     try {
-      await User.bulkCreate(users, { validate: true }, options)
+      await User.bulkCreate(users, { validate: true })
 
     } catch (error) {
       console.log(error)
