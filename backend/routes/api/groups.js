@@ -166,7 +166,7 @@ router.get('/current', requireAuth, async (req, res) => {
                     [sequelize.fn('COUNT', sequelize.col('Members.id')), 'numMembers'],
                 ]
             },
-            group: ['Members.id', 'Group.id']
+            group: ['Members.Membership.id', 'Group.id']
         })
         res.json({
             Groups: [
