@@ -1,6 +1,11 @@
 'use strict';
 
 const { Venue } = require('../models')
+const options = {};
+
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA
+}
 
 const venues = [
   {
@@ -44,7 +49,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await Venue.bulkCreate(venues)
+    await Venue.bulkCreate(venues, options)
   },
 
   async down(queryInterface, Sequelize) {
@@ -61,7 +66,7 @@ module.exports = {
           where: {
             id: venue.id
           }
-        })
+        }, options)
       } catch (error) {
         console.log(error)
       }

@@ -2,6 +2,11 @@
 
 /** @type {import('sequelize-cli').Migration} */
 const { Event } = require('../models')
+const options = {};
+
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA
+}
 const events = [
   {
     id: 1,
@@ -52,7 +57,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await Event.bulkCreate(events, { validate: true })
+    await Event.bulkCreate(events, { validate: true }, options)
   },
 
   async down(queryInterface, Sequelize) {
@@ -69,7 +74,7 @@ module.exports = {
           where: {
             id: event.id
           }
-        })
+        }, options)
       } catch (error) {
         console.log(error)
       }

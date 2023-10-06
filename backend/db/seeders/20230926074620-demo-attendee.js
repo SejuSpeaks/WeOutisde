@@ -2,6 +2,11 @@
 
 /** @type {import('sequelize-cli').Migration} */
 const { Attendee } = require('../models')
+const options = {};
+
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA
+}
 const attendees = [
   {
     id: 1,
@@ -41,7 +46,7 @@ module.exports = {
      * }], {});
     */
     try {
-      await Attendee.bulkCreate(attendees, { validate: true })
+      await Attendee.bulkCreate(attendees, { validate: true }, options)
     } catch (error) {
       console.log(error)
     }
@@ -60,7 +65,7 @@ module.exports = {
           where: {
             id: attendee.id
           }
-        })
+        }, options)
       } catch (error) {
         console.log(error)
       }

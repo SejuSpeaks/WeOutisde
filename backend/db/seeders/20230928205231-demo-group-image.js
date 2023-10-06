@@ -2,6 +2,11 @@
 
 /** @type {import('sequelize-cli').Migration} */
 const { GroupImage } = require('../models')
+const options = {};
+
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA
+}
 const images = [
   {
     id: 1,
@@ -31,7 +36,7 @@ module.exports = {
      * }], {});
     */
     try {
-      await GroupImage.bulkCreate(images, { validate: true })
+      await GroupImage.bulkCreate(images, { validate: true }, options)
     } catch (error) {
       console.log(error)
     }
@@ -50,7 +55,7 @@ module.exports = {
           where: {
             id: image.id
           }
-        })
+        }, options)
       } catch (error) {
         console.log(error)
       }

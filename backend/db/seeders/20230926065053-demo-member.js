@@ -2,6 +2,11 @@
 
 /** @type {import('sequelize-cli').Migration} */
 const { Membership } = require('../models')
+const options = {};
+
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA
+}
 const members = [ //cohost member pending host
   {
     id: 1,
@@ -40,7 +45,7 @@ module.exports = {
      * }], {});
     */
     try {
-      await Membership.bulkCreate(members, { validate: true })
+      await Membership.bulkCreate(members, { validate: true }, options)
     } catch (error) {
       console.log(error)
     }
@@ -59,7 +64,7 @@ module.exports = {
           where: {
             id: member.id
           }
-        })
+        }, options)
       } catch (error) {
         console.log(error)
       }
