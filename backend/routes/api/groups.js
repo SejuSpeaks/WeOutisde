@@ -140,7 +140,7 @@ router.get('/', async (req, res) => {
             include: [
                 [
                     sequelize.literal(
-                        `(SELECT COUNT(*) FROM Memberships WHERE Memberships.GroupId = Group.id)`
+                        `(SELECT COUNT(*) FROM Memberships WHERE Memberships.groupId = Groups.id)`
                     ),
                     "numMembers",
                 ],
@@ -178,7 +178,7 @@ router.get('/current', requireAuth, async (req, res) => {
                     [sequelize.fn('COUNT', sequelize.col('Members.id')), 'numMembers'],
                 ]
             },
-            group: ['Members.id']
+            group: ['Members.id', 'Group.id']
         })
         res.json({
             Groups: [
