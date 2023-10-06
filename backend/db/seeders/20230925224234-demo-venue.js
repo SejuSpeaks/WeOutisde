@@ -58,8 +58,7 @@ module.exports = {
      */
 
     await Venue.destroy({
-      where: {},
-      truncate: true
+      where: {}
     })
   }
 };

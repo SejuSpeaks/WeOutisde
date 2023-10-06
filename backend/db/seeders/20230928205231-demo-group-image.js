@@ -50,8 +50,7 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
     await GroupImage.destroy({
-      where: {},
-      truncate: true
+      where: {}
     })
   }
 

@@ -67,8 +67,7 @@ module.exports = {
      */
 
     await Event.destroy({
-      where: {},
-      truncate: true
+      where: {}
     })
   }
 };

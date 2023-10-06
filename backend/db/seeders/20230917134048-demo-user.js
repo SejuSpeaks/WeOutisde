@@ -60,8 +60,7 @@ module.exports = {
      */
 
     await User.destroy({
-      where: {},
-      truncate: true
+      where: {}
     })
 
     // await queryInterface.bulkDelete('Users', null, {});
