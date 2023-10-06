@@ -36,7 +36,7 @@ module.exports = {
      * }], {});
     */
     try {
-      await EventImage.bulkCreate(images, { validate: true }, options)
+      await EventImage.bulkCreate(images, { validate: true })
     } catch (error) {
       console.log(error)
     }
@@ -55,7 +55,7 @@ module.exports = {
           where: {
             id: image.id
           }
-        }, options)
+        })
       } catch (error) {
         console.log(error)
       }

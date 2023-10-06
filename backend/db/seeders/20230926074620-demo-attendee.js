@@ -46,7 +46,7 @@ module.exports = {
      * }], {});
     */
     try {
-      await Attendee.bulkCreate(attendees, { validate: true }, options)
+      await Attendee.bulkCreate(attendees, { validate: true })
     } catch (error) {
       console.log(error)
     }
@@ -65,7 +65,7 @@ module.exports = {
           where: {
             id: attendee.id
           }
-        }, options)
+        })
       } catch (error) {
         console.log(error)
       }

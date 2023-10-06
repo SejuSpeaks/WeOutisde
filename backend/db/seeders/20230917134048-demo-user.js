@@ -48,7 +48,7 @@ module.exports = {
      * }], {});
     */
     try {
-      await User.bulkCreate(users, { validate: true }, options)
+      await User.bulkCreate(users, { validate: true })
 
     } catch (error) {
       console.log(error)
@@ -70,7 +70,7 @@ module.exports = {
           where: {
             email: userInfo.email
           },
-        }, options)
+        })
       } catch (error) {
         console.log(error)
       }

@@ -46,7 +46,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await Venue.bulkCreate(venues, options)
+    await Venue.bulkCreate(venues)
   },
 
   async down(queryInterface, Sequelize) {
@@ -63,7 +63,7 @@ module.exports = {
           where: {
             id: venue.id
           }
-        }, options)
+        })
       } catch (error) {
         console.log(error)
       }

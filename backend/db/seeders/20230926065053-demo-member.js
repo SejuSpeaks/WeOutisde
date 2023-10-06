@@ -41,7 +41,7 @@ module.exports = {
      * }], {});
     */
     try {
-      await Membership.bulkCreate(members, { validate: true }, options)
+      await Membership.bulkCreate(members, { validate: true })
     } catch (error) {
       console.log(error)
     }
@@ -60,7 +60,7 @@ module.exports = {
           where: {
             id: member.id
           }
-        }, options)
+        })
       } catch (error) {
         console.log(error)
       }

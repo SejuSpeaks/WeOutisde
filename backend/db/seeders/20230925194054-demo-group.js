@@ -54,7 +54,7 @@ module.exports = {
      * }], {});
     */
     try {
-      await Group.bulkCreate(groups, options)
+      await Group.bulkCreate(groups)
     } catch (error) {
       console.log(error)
     }
@@ -74,7 +74,7 @@ module.exports = {
           where: {
             name: group.name
           }
-        }, options)
+        })
       } catch (error) {
         console.log(error)
       }

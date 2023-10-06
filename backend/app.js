@@ -6,8 +6,7 @@ const cors = require('cors');
 const csurf = require('csurf');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
-const { enviorment } = require('./config')
-const isProduction = enviorment === 'production';
+const isProduction = environment === 'production';
 const routes = require('./routes');
 
 const app = express();

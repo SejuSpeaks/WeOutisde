@@ -55,7 +55,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await Event.bulkCreate(events, { validate: true }, options)
+    await Event.bulkCreate(events, { validate: true })
   },
 
   async down(queryInterface, Sequelize) {
@@ -72,7 +72,7 @@ module.exports = {
           where: {
             id: event.id
           }
-        }, options)
+        })
       } catch (error) {
         console.log(error)
       }
