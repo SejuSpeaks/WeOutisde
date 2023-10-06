@@ -140,7 +140,7 @@ router.get('/', async (req, res) => {
             include: [
                 [
                     sequelize.literal(
-                        `(SELECT COUNT(*) FROM Memberships WHERE Memberships.GroupId = \`Group\`.id)`
+                        `(SELECT COUNT(*) FROM Memberships WHERE Memberships.GroupId = Group.id)`
                     ),
                     "numMembers",
                 ],
