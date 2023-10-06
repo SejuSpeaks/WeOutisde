@@ -10,25 +10,21 @@ const bcrypt = require("bcryptjs");
 
 const users = [
   {
-    id: 1,
     email: 'thisisemail@gmail.com',
     username: 'Hooligan',
     hashedPassword: bcrypt.hashSync('theFirstPass')
   },
   {
-    id: 2,
     email: 'bawgusPatrol@gmail.com',
     username: 'theBawgis',
     hashedPassword: bcrypt.hashSync('ThisisnotagoodPassword')
   },
   {
-    id: 3,
     email: 'Hacker@gmail.com',
     username: 'iAmAHacker',
     hashedPassword: bcrypt.hashSync('1234')
   },
   {
-    id: 4,
     email: 'America@gmail.com',
     username: 'Joe Biden',
     hashedPassword: bcrypt.hashSync('IamJoeBiden')
