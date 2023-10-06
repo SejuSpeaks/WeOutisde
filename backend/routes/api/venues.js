@@ -19,10 +19,12 @@ const validateVenue = [
         .withMessage('State is required'),
     check('lat')
         .exists({ checkFalsy: true })
+        .isLength({ min: -90, max: 90 })
         .isDecimal()
         .withMessage('Latitude is not valid'),
     check('lng')
         .exists({ checkFalsy: true })
+        .isLatLong()
         .isDecimal()
         .withMessage('Longitude is not valid'),
     handleValidationErrors

@@ -24,12 +24,27 @@ const validateEvent = [
         .exists({ checkFalsy: true })
         .withMessage('Capacity must be an integer'),
     check('price')
-        .isFloat()
+        .isFloat({ min: 0 })
         .exists({ checkFalsy: true })
         .withMessage('Price is invalid'),
     check('description')
         .exists({ checkFalsy: true })
         .withMessage('Description is required'),
+    check('startDate')
+        .custom((value) => {
+            const currentDate = new Date();
+            const startDate = new Date(value);
+            if (startDate <= currentDate) {
+                throw new Error('Start date must be in the future');
+            }
+            return true;
+        }),
+    check('endDate')
+        .custom((value, { req }) => {
+            const startDate = Date(req.body.startDate)
+            if (startDate > value) throw new Error('End date is less than Start date')
+            return true
+        }),
     handleValidationErrors
 ];
 
@@ -87,10 +102,12 @@ router.get('/', validateQuery, async (req, res) => { //fix filters
         include: [ //num attending
             {
                 model: Group,
+                attributes: ['id', 'name', 'city', 'state'],
                 include: [
                     {
                         model: Venue,
-                        as: 'Venues'
+                        as: 'Venues',
+                        attributes: ['id', 'city', 'state']
                     }
                 ]
             },
@@ -146,7 +163,7 @@ router.get('/:eventId', async (req, res) => {
             'Group.Venues.id',
             'EventImages.id',
             'Group.id',
-            'attnedee.Attendee.id'
+            'attendee.Attendee.id'
         ]
     })
 

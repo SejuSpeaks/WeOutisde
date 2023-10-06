@@ -33,7 +33,7 @@ const ValidateGroup = [
     handleValidationErrors
 ];
 
-const validateVenue = [
+const validateVenue = [ //touched
     check('address')
         .exists({ checkFalsy: true })
         .withMessage('Street address is required'),
@@ -45,15 +45,16 @@ const validateVenue = [
         .withMessage('State is required'),
     check('lat')
         .exists({ checkFalsy: true })
+        .isLatLong()
         .isDecimal()
         .withMessage('Latitude is not valid'),
     check('lng')
         .exists({ checkFalsy: true })
+        .isLatLong()
         .isDecimal()
         .withMessage('Longitude is not valid'),
     handleValidationErrors
 ];
-
 const validateEvent = [
     check('venueId')
         .exists({ checkFalsy: true })
@@ -71,12 +72,27 @@ const validateEvent = [
         .exists({ checkFalsy: true })
         .withMessage('Capacity must be an integer'),
     check('price')
-        .isFloat()
+        .isFloat({ min: 0 })
         .exists({ checkFalsy: true })
         .withMessage('Price is invalid'),
     check('description')
         .exists({ checkFalsy: true })
         .withMessage('Description is required'),
+    check('startDate')
+        .custom((value) => {
+            const currentDate = new Date();
+            const startDate = new Date(value);
+            if (startDate <= currentDate) {
+                throw new Error('Start date must be in the future');
+            }
+            return true;
+        }),
+    check('endDate')
+        .custom((value, { req }) => {
+            const startDate = Date(req.body.startDate)
+            if (startDate > value) throw new Error('End date is less than Start date')
+            return true
+        }),
     handleValidationErrors
 ];
 
@@ -354,7 +370,11 @@ router.get('/:groupId/venues', requireAuth, async (req, res) => {
 
         if (group.organizerId === req.user.id || status === 'host' || status === 'co-host') {
             const venues = await group.getVenues()
-            res.json(venues)
+            res.json({
+                Venues: [
+                    venues
+                ]
+            })
         } else {
             res.status(403)
             res.json({ message: "Forbidden" })
