@@ -263,12 +263,14 @@ router.put('/:groupId', requireAuth, ValidateGroup, async (req, res) => {
 router.delete('/:groupId', requireAuth, async (req, res) => {
     const { groupId } = req.params
     if (req.user) {
+        //find group
         const group = await Group.findByPk(groupId)
+        //if group dosent exists
         if (!group) {
             res.status(404)
             res.json({ message: "Group couldn't be found" })
         }
-
+        //user validation
         if (group.organizerId === req.user.id) {
             try {
                 await Group.destroy({ where: { id: groupId } })

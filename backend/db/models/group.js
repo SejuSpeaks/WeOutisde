@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Group.belongsTo(models.User, { foreignKey: 'organizerId', as: 'Organizer' }),
-        Group.hasMany(models.Venue, { foreignKey: 'groupId', as: 'Venues' }), //review
+        Group.hasMany(models.Venue, { foreignKey: 'groupId', as: 'Venues', onDelete: 'cascade' }), //review
         Group.belongsToMany(models.User, {
           through: models.Membership,
           as: 'Members',

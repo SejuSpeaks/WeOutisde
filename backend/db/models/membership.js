@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       references: {
         model: 'Groups',
-        key: 'id'
+        key: 'id',
       },
       allowNull: false
     },

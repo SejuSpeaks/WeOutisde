@@ -30,7 +30,7 @@ module.exports = {
           model: 'Groups',
           key: 'id'
         },
-
+        onDelete: 'cascade'
       },
       status: {
         type: Sequelize.STRING
