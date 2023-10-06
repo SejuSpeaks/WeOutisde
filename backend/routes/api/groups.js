@@ -210,6 +210,7 @@ router.get('/:groupId', async (req, res) => { //fix
             'Members.id',
             'GroupImages.id',
             'Venues.id',
+            'Group.id'
         ]
 
     })
