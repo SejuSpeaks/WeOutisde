@@ -57,7 +57,7 @@ module.exports = {
      * }], {});
     */
     try {
-      await Group.bulkCreate(groups, options)
+      await Group.bulkCreate(groups)
     } catch (error) {
       console.log(error)
     }
