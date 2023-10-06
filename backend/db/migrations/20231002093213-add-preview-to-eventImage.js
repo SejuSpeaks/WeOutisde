@@ -1,6 +1,12 @@
 'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
+let options = {};
+options.tableName = 'EventImages'; // define your table name in options object
+
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
 module.exports = {
   async up(queryInterface, Sequelize) {
     /**
@@ -9,7 +15,7 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.addColumn('EventImages', 'preview', {
+    await queryInterface.addColumn(options, 'preview', {
       type: Sequelize.DataTypes.BOOLEAN,
       defaultValue: false
     })
@@ -22,6 +28,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.removeColumn('EventImages', 'preview')
+    await queryInterface.removeColumn(options, 'preview')
   }
 };

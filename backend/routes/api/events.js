@@ -33,9 +33,33 @@ const validateEvent = [
     handleValidationErrors
 ];
 
+const validateQuery = [
+    check('page')
+        .optional()
+        .isInt({ min: 1 })
+        .withMessage('Page must be greater than or equal to 1'),
+    check('size')
+        .optional()
+        .isInt({ min: 1 })
+        .withMessage('Size must be greater than or equal to 1'),
+    check('name')
+        .optional()
+        .isAlpha()
+        .withMessage("Name must be a string"),
+    check('type')
+        .optional()
+        .isIn(['Online', 'In person'])
+        .withMessage("Type must be 'Online' or 'In Person"),
+    check('startDate')
+        .optional()
+        .isDate()
+        .withMessage("Start date must be a valid datetime"),
+    handleValidationErrors
+];
 
 
-router.get('/', async (req, res) => {
+
+router.get('/', validateQuery, async (req, res) => { //fix filters
     let { page, size, name, type, startDate } = req.query;
 
     page = parseInt(page) || 1;

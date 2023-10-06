@@ -117,7 +117,7 @@ router.post('/', requireAuth, ValidateGroup, async (req, res) => {
     }
 })
 
-router.get('/', validateQuery, async (req, res) => {
+router.get('/', async (req, res) => {
     let { page, size } = req.query;
 
     page = parseInt(page) || 1;

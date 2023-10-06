@@ -13,8 +13,16 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       User.hasMany(models.Group, { foreignKey: 'organizerId' }),
-        User.belongsToMany(models.Group, { through: models.Membership }),
-        User.belongsToMany(models.Event, { through: models.Attendee })
+        User.belongsToMany(models.Group, {
+          through: models.Membership,
+          foreignKey: 'userId',
+          otherKey: 'groupId'
+        }),
+        User.belongsToMany(models.Event, {
+          through: models.Attendee,
+          foreignKey: 'userId', //foreign key refers to what youre on
+          otherKey: 'eventId' //other key = table connection to
+        })
     }
   }
   User.init({
