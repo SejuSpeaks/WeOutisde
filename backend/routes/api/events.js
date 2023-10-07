@@ -344,7 +344,7 @@ router.post('/:eventId/images', requireAuth, async (req, res) => {
 
         console.log('EVENTCONSOLELOG', userAttendance)
         //check status
-        if (status === 'co-host' || req.user.id === event.Group.organizerId || userAttendance === 'attending') {
+        if (status === 'co-host' || req.user.id === event.Group.organizerId || userAttendee.status === 'attending') {
             const eventImage = await EventImage.build({
                 eventId: req.params.eventId,
                 url: url,
