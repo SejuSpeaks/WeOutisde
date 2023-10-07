@@ -39,7 +39,7 @@ const validateEvent = [
     check('endDate')
         .custom((value, { req }) => {
             const startDate = new Date(req.body.startDate)
-            if (startDate > value) throw new Error('End date is less than Start date')
+            if (Date.parse(startDate) > Date.parse(value)) throw new Error('End date is less than Start date')
             return true
         }),
     handleValidationErrors
@@ -298,7 +298,7 @@ router.delete('/:eventId', requireAuth, async (req, res) => {
 })
 
 router.post('/:eventId/images', requireAuth, async (req, res) => {
-    let status;
+    let status = undefined;
     let userAttendance;
     let organizerId;
     const { url, preview } = req.body
@@ -581,7 +581,7 @@ router.put('/:eventId/attendance', requireAuth, async (req, res) => {
                 }
             })
 
-            res.json(updatedAttendee)
+            res.json(attendanceOfRequestedUser)
         } else {
             res.status(403)
             res.json({ message: "Forbidden" })
