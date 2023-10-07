@@ -341,8 +341,7 @@ router.post('/:eventId/images', requireAuth, async (req, res) => {
         //check if user is attenddee find user attendee status
         const userAttendee = await Attendee.findOne({ where: { userId: req.user.id, eventId: req.params.eventId } })
         if (userAttendee) userAttendance = userAttendee.status
-        res.json(userAttendee)
-        console.log('EVENTCONSOLELOG', userAttendance)
+
         //check status
         if (status === 'co-host' || req.user.id === event.Group.organizerId || userAttendee.status === 'attending') {
             const eventImage = await EventImage.build({
@@ -574,7 +573,7 @@ router.put('/:eventId/attendance', requireAuth, async (req, res) => {
 
             attendanceOfRequestedUser.status = status
 
-            attendanceOfRequestedUser.save()
+            await attendanceOfRequestedUser.save()
 
             res.json(attendanceOfRequestedUser)
         } else {
