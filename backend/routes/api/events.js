@@ -298,7 +298,7 @@ router.delete('/:eventId', requireAuth, async (req, res) => {
 })
 
 router.post('/:eventId/images', requireAuth, async (req, res) => {
-    let status = undefined;
+    let status;
     let userAttendance;
     let organizerId;
     const { url, preview } = req.body
@@ -340,10 +340,13 @@ router.post('/:eventId/images', requireAuth, async (req, res) => {
 
         //check if user is attenddee find user attendee status
         const userAttendee = await Attendee.findOne({ where: { userId: req.user.id, eventId: req.params.eventId } })
-        if (userAttendee) userAttendance = userAttendee.status
-        //res.json(userAttendee)
-        //check status
-        if (status === 'co-host' || req.user.id === event.Group.organizerId || userAttendee.status === 'attending') {
+        if (userAttendee) {
+            userAttendance = userAttendee.status
+        }
+
+
+
+        if (status === 'co-host' || req.user.id === event.Group.organizerId || userAttendee && userAttendee.status === 'attending') {
             const eventImage = await EventImage.build({
                 eventId: req.params.eventId,
                 url: url,
@@ -575,13 +578,23 @@ router.put('/:eventId/attendance', requireAuth, async (req, res) => {
             // await attendanceOfRequestedUser.validate()
             // await attendanceOfRequestedUser.save()
 
+            //update attendee
             const updatedAttendee = await Attendee.update({ status: status }, {
                 where: {
                     userId: userId
                 }
             })
 
-            res.json(attendanceOfRequestedUser)
+            const sendUpdatedAttendee = await Attendee.findOne({
+                where: {
+                    userId: userId
+                },
+                attributes: {
+                    exclude: ['createdAt', 'updatedAt']
+                }
+            })
+
+            res.json(sendUpdatedAttendee) //touched again
         } else {
             res.status(403)
             res.json({ message: "Forbidden" })
