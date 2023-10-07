@@ -85,7 +85,7 @@ const validateEvent = [
     check('endDate')
         .custom((value, { req }) => {
             const startDate = new Date(req.body.startDate)
-            if (startDate > value) throw new Error('End date is less than Start date')
+            if (Date.parse(startDate) > Date.parse(value)) throw new Error('End date is less than Start date')
             return true
         }),
     handleValidationErrors
@@ -535,22 +535,38 @@ router.get('/:groupId/members', async (req, res) => {
                 attributes: ['status']
             }
         },
-        attributes: []
+        attributes: ['organizerId']
 
     })
     if (!group) {
         res.status(404)
         res.json({ message: "Group couldn't be found" })
     }
-
+    organizerId = group.organizerId
     const membershipStatusOfUser = await Membership.findOne({
         where: { userId: req.user.id, groupId: req.params.groupId }
     })
 
     if (membershipStatusOfUser) status = membershipStatusOfUser.status
 
-    if (user.id === group.organizerId || status === 'co-host') {
-        res.json(group)
+    if (user.id === organizerId || status === 'co-host') {
+        const organizerGroup = await Group.findOne({
+            where: {
+                id: req.params.groupId
+            },
+            include: {
+                model: User,
+                as: 'Members',
+                attributes: ['id', 'firstName', 'lastName'],
+                through: {
+                    attributes: ['status']
+                }
+            },
+            attributes: []
+
+        })
+
+        res.json(organizerGroup)
     }
     else {
         const nonOrganizerGroup = await Group.findOne({
