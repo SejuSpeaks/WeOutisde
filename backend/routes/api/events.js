@@ -341,7 +341,7 @@ router.post('/:eventId/images', requireAuth, async (req, res) => {
         //check if user is attenddee find user attendee status
         const userAttendee = await Attendee.findOne({ where: { userId: req.user.id, eventId: req.params.eventId } })
         if (userAttendee) userAttendance = userAttendee.status
-        res.json(userAttendee)
+        //res.json(userAttendee)
         //check status
         if (status === 'co-host' || req.user.id === event.Group.organizerId || userAttendee.status === 'attending') {
             const eventImage = await EventImage.build({
@@ -571,11 +571,17 @@ router.put('/:eventId/attendance', requireAuth, async (req, res) => {
                 res.json({ message: "Attendance between the user and the event does not exists" })
             }
 
-            attendanceOfRequestedUser.status = status
+            // attendanceOfRequestedUser.status = status
+            // await attendanceOfRequestedUser.validate()
+            // await attendanceOfRequestedUser.save()
 
-            await attendanceOfRequestedUser.save()
+            const updatedAttendee = await Attendee.update({ status: status }, {
+                where: {
+                    userId: userId
+                }
+            })
 
-            res.json(attendanceOfRequestedUser)
+            res.json(updatedAttendee)
         } else {
             res.status(403)
             res.json({ message: "Forbidden" })
