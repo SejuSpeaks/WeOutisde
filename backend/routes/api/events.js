@@ -7,7 +7,22 @@ const { Op } = require('sequelize')
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User, Group, Membership, Event, Venue, GroupImage, EventImage, Attendee, sequelize } = require('../../db/models');
 
+
+const isVenueFound = async (venueId) => {
+    const venue = await Venue.findOne({ where: { id: venueId } });
+    return venue !== null;
+};
+
+const validateVenueId = async (value, { req }) => {
+    if (!await isVenueFound(value)) {
+        throw new Error('Invalid venueId. Venue not found.');
+    }
+};
+
 const validateEvent = [
+    check('venueId')
+        .custom(validateVenueId)
+        .withMessage('Venue does not exist'),
     check('name')
         .isLength({ min: 5 })
         .exists({ checkFalsy: true })
