@@ -388,10 +388,12 @@ router.get('/:groupId/events', async (req, res) => {
         include: [
             {
                 model: Group,
+                attributes: ['id', 'name', 'city', 'state'],
                 include: [
                     {
                         model: Venue,
-                        as: 'Venues'
+                        as: 'Venues',
+                        attributes: ['id', 'city', 'state']
                     }
                 ]
             },
@@ -402,6 +404,7 @@ router.get('/:groupId/events', async (req, res) => {
             }
         ],
         attributes: {
+            exclude: ['description', 'capacity', 'createdAt', 'updatedAt'],
             include: [[sequelize.fn('COUNT', sequelize.col('attendee.id')), 'numAttending']]
         },
         group: [

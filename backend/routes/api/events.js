@@ -138,9 +138,11 @@ router.get('/:eventId', async (req, res) => {
         include: [
             {
                 model: Group,
+                attributes: ['id', 'name', 'private', 'city', 'state'],
                 include: {
                     model: Venue,
-                    as: 'Venues'
+                    as: 'Venues',
+                    attributes: ['id', 'address', 'city', 'state', 'lat', 'lng']
                 }
             },
             {
@@ -150,10 +152,12 @@ router.get('/:eventId', async (req, res) => {
             },
             {
                 model: EventImage,
-                as: 'EventImages'
+                as: 'EventImages',
+                attributes: ['id', 'url', 'preview']
             }
         ],
         attributes: {
+            exclude: ['createdAt', 'updatedAt'],
             include: [[sequelize.fn('COUNT', sequelize.col('attendee.id')), 'numAttending']]
         },
         group: [
