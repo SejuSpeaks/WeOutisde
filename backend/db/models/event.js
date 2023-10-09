@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
         otherKey: 'userId',
       }),
         Event.belongsTo(models.Group, { foreignKey: 'groupId' }),
-        Event.hasMany(models.EventImage, { foreignKey: 'eventId', as: 'EventImages' })
+        Event.hasMany(models.EventImage, { foreignKey: 'eventId', as: 'EventImages' }),
+        Event.hasMany(models.Venue, { foreignKey: 'id' });
     }
   }
   Event.init({

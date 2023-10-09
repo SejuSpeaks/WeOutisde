@@ -47,7 +47,7 @@ router.put('/:venueId', requireAuth, validateVenue, async (req, res) => {
                 }
             })
         } catch (error) {
-            res.status(400)
+            res.status(404)
             res.json({ message: "Venue couldn't be found" })
         }
 

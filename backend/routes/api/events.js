@@ -100,13 +100,12 @@ router.get('/', validateQuery, async (req, res) => { //fix filters
             {
                 model: Group,
                 attributes: ['id', 'name', 'city', 'state'],
-                include: [
-                    {
-                        model: Venue,
-                        as: 'Venues',
-                        attributes: ['id', 'city', 'state']
-                    }
-                ]
+                // include: [
+                // ]
+            },
+            {
+                model: Venue,
+                attributes: ['id', 'city', 'state']
             },
             {
                 model: User,
@@ -139,11 +138,10 @@ router.get('/:eventId', async (req, res) => {
             {
                 model: Group,
                 attributes: ['id', 'name', 'private', 'city', 'state'],
-                include: {
-                    model: Venue,
-                    as: 'Venues',
-                    attributes: ['id', 'address', 'city', 'state', 'lat', 'lng']
-                }
+            },
+            {
+                model: Venue,
+                attributes: ['id', 'address', 'city', 'state', 'lat', 'lng']
             },
             {
                 model: User,
@@ -162,7 +160,7 @@ router.get('/:eventId', async (req, res) => {
         },
         group: [
             'Event.id',
-            'Group.Venues.id',
+            'Venues.id',
             'EventImages.id',
             'Group.id',
             'attendee.Attendee.id'
@@ -513,7 +511,11 @@ router.post('/:eventId/attendance', requireAuth, async (req, res) => {
                 userId: req.user.id,
             })
 
-            res.json(requestAttendance)
+            const safeAttendee = {
+                userId: requestAttendance.userId,
+                status: requestAttendance.status
+            }
+            res.json(safeAttendee)
         } else {
             res.status(403)
             res.json({ message: "Forbidden" })
@@ -653,7 +655,7 @@ router.delete('/:eventId/attendance', requireAuth, async (req, res) => {
             })
         } else {
             res.status(403)
-            res.json({ message: "Forbidden" })
+            res.json({ message: "Only the User or organizer may delete an Attendance" })
         }
     }
 })
