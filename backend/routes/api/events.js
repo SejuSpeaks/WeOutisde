@@ -114,6 +114,7 @@ router.get('/', validateQuery, async (req, res) => { //fix filters
                 attributes: ['id']
             }
         ],
+        attributes: ['id', 'groupId', 'venueId', 'name', 'type', 'startDate', 'endDate', 'previewImage'],
         where,
         limit: size,
         offset: offset,
