@@ -433,7 +433,9 @@ router.get('/:eventId/attendees', async (req, res) => {
         })
 
 
-        res.json(attendeesOfEvent)
+        res.json({
+            Attendees: attendeesOfEvent.attendee
+        })
     }
     else {
         const nonValidUserResult = await Event.findOne({
@@ -457,7 +459,9 @@ router.get('/:eventId/attendees', async (req, res) => {
         })
 
 
-        res.json(nonValidUserResult)
+        res.json({
+            Attendees: nonValidUserResult.attendee
+        })
     }
 })
 
