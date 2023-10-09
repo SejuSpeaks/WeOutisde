@@ -10,18 +10,12 @@ const { User, Group, Membership, Event, Venue, GroupImage, EventImage, Attendee,
 
 const isVenueFound = async (venueId) => {
     const venue = await Venue.findOne({ where: { id: venueId } });
-    return venue !== null;
-};
-
-const validateVenueId = async (value, { req }) => {
-    if (!await isVenueFound(value)) {
-        throw new Error('Invalid venueId. Venue not found.');
-    }
+    if (!venue) throw new Error()
 };
 
 const validateEvent = [
     check('venueId')
-        .custom(validateVenueId)
+        .custom(isVenueFound)
         .withMessage('Venue does not exist'),
     check('name')
         .isLength({ min: 5 })
