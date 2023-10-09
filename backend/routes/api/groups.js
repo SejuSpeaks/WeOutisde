@@ -123,7 +123,7 @@ router.post('/', requireAuth, ValidateGroup, async (req, res) => {
             city: city,
             state: state
         })
-
+        res.status(201);
         res.json(newGroup)
     }
 })
@@ -641,11 +641,11 @@ router.post('/:groupId/membership', requireAuth, async (req, res) => {
         })
 
         const safeMember = {
-            userId: req.user.id,
+            memberId: req.user.id,
             status: membershipRequest.status
         }
 
-        res.json(safeMember)
+        return res.json(safeMember)
     }
 })
 
@@ -723,7 +723,15 @@ router.put('/:groupId/membership', requireAuth, async (req, res) => {
             if (req.user.id === group.organizerId || currentstatus === 'co-host') {
                 membership.status = 'member'
                 membership.save()
-                res.json(membership)
+
+                const safeMember = {
+                    id: membership.id,
+                    groupId: req.params.groupId,
+                    memberId: memberId,
+                    status: membership.status
+                }
+
+                res.json(safeMember)
                 return
             } else {
                 res.status(403)
@@ -736,7 +744,15 @@ router.put('/:groupId/membership', requireAuth, async (req, res) => {
             if (req.user.id === organizerId) {
                 membership.status = 'co-host'
                 membership.save()
-                res.json(membership)
+
+                const safeMember = {
+                    id: membership.id,
+                    groupId: req.params.groupId,
+                    memberId: memberId,
+                    status: membership.status
+                }
+
+                res.json(safeMember)
                 return
             }
             else {
