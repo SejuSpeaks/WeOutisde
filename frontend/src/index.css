@@ -1,1 +1,15 @@
 /* TODO Add site wide styles */
+
+@font-face {
+    font-family: 'NunitoSans';
+    src: url('../fonts/NunitoSans-Italic-VariableFont_YTLC\,opsz\,wdth\,wght.ttf');
+}
+
+body {
+    margin: 0px;
+}
+
+html {
+    height: 100vh;
+    font-family: NunitoSans;
+}

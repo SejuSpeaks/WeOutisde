@@ -1,0 +1,97 @@
+import { csrfFetch } from "./csrf";
+
+const SET_USER = 'user/SETUSER';
+const GET_USER = 'user/GETUSER'
+const REMOVE_USER = 'user/REMOVEUSER'
+
+/* ---------------LOGIN USER----------------- */
+const setUser = (user) => {
+    return {
+        type: SET_USER,
+        user
+    }
+}
+
+export const setUserThunk = (userLoginInformation) => async dispatch => {
+    console.log(userLoginInformation, 'logininfo')
+
+    const response = await csrfFetch('api/session', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userLoginInformation)
+    })
+
+
+    if (response.ok) {
+        const userData = await response.json();
+        dispatch(setUser(userData));
+        return userData;
+    }
+    else {
+        return await response.json()
+    }
+}
+
+
+
+/* ---------------REMOVE USER----------------- */
+const removeUser = () => {
+    return {
+        type: REMOVE_USER,
+    }
+}
+
+export const sessionRemove = () => async dispatch => {
+
+    const response = csrfFetch('/api/session', {
+        method: "DELETE",
+    })
+
+    if (response.ok) {
+        const userData = await response.json()
+        dispatch(removeUser())
+    }
+}
+
+/* ---------------GET USER----------------- */
+
+export const restoreUser = () => async dispatch => {
+    const response = await csrfFetch('/api/session');
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(setUser(data.user))
+        return response
+    }
+    else {
+        return response.json()
+    }
+}
+
+
+
+
+
+const session = (state = { user: null }, action) => {
+    let newState = { ...state }
+    switch (action.type) {
+        case SET_USER:
+            newState = { ...state };
+            newState.user = action.user
+            return newState
+            break;
+
+        case REMOVE_USER:
+            newState = { ...state }
+            return newState.user = null;
+
+
+        default:
+            return state;
+            break;
+    }
+}
+
+export default session;
