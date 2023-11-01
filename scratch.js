@@ -155,3 +155,17 @@
 
 
 */
+
+// function checkDate(date) {
+//     const currentDate = new Date
+
+//     const [yearProvided, monthProvided, dayProvided] = date.split('-') //parse this
+//     const dateProvided = new Date(`${yearProvided}-${monthProvided}-${dayProvided}`)
+
+
+//     if (dateProvided < currentDate) {
+//         throw new Error('Start date must be in future')
+//     }
+// }
+
+// checkDate("2000-11-22 20:00:00")
