@@ -4,8 +4,6 @@ import { useDispatch } from 'react-redux';
 import { restoreUser } from './store/session';
 
 //component imports
-import LoginFormPage from "./components/LoginFormPage";
-import SignUp from './components/SignupFormPage';
 import Navigation from './components/Navigation';
 
 function App() {
@@ -18,18 +16,12 @@ function App() {
   }, [dispatch])
 
   return (
-    isLoaded && (
-      <div>
-        <Navigation isLoaded={isLoaded} /> //profile dropdown not loading on first render after being loged in
-        <Switch>
-          <Route exact path='/'><h1>App</h1></Route>
-          <Route exact path={`/login`} component={LoginFormPage} />
-          <Route path='/signup' component={SignUp} />
-        </Switch>
-      </div>
-    )
+    <>
+      <Navigation isLoaded={isLoaded} />
+      {isLoaded && <Switch></Switch>}
+    </>
+  )
 
-  );
 }
 
 export default App;

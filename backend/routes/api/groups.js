@@ -764,7 +764,6 @@ router.put('/:groupId/membership', requireAuth, async (req, res) => {
 
 router.delete('/:groupId/membership', requireAuth, async (req, res) => {
     const { memberId } = req.body
-    console.log(memberId)
     if (req.user) {
         const group = await Group.findOne({
             where: {

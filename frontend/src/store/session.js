@@ -16,7 +16,6 @@ const setUser = (user) => {
 }
 
 export const setUserThunk = (userLoginInformation) => async dispatch => {
-    console.log(userLoginInformation, 'logininfo')
 
     const response = await csrfFetch('api/session', {
         method: "POST",

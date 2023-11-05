@@ -30,7 +30,6 @@ router.delete('/:eventImageId', requireAuth, async (req, res) => {
         res.status(404)
         res.json({ message: "Event Image couldn't be found" })
     }
-    console.log(image)
     //check if user is organizer of group
     const organizerId = image.Event.Group.organizerId
 

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect } from 'react-router-dom/cjs/react-router-dom.min';
-import session, { signUp } from '../../store/session';
+import { signUp } from '../../store/session';
+import { useModal } from '../../context/Modal'
 
 import './SignupFormPage.css'
 
@@ -17,6 +18,7 @@ const SignUp = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState({})
+    const { closeModal } = useModal();
 
     if (sessionUser) return <Redirect to='/' />
 
@@ -32,10 +34,11 @@ const SignUp = () => {
         }
         if (password === confirmPassword) {
             setErrors({});
-            return dispatch(signUp(user)).catch(async res => {
-                const data = await res.json();
-                data && data.errors ? setErrors(data.errors) : setErrors({})
-            })
+            return dispatch(signUp(user)).then(closeModal)
+                .catch(async res => {
+                    const data = await res.json();
+                    data && data.errors ? setErrors(data.errors) : setErrors({})
+                })
         }
         return setErrors({ confirmPassword: 'Confirmed Password field must be the same as the Password field' })
 
