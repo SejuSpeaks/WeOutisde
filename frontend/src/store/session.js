@@ -3,6 +3,9 @@ import { csrfFetch } from "./csrf";
 const SET_USER = 'user/SETUSER';
 const GET_USER = 'user/GETUSER'
 const REMOVE_USER = 'user/REMOVEUSER'
+const SIGNUP = 'user/SIGNUP';
+
+
 
 /* ---------------LOGIN USER----------------- */
 const setUser = (user) => {
@@ -36,6 +39,28 @@ export const setUserThunk = (userLoginInformation) => async dispatch => {
 
 
 
+/* ---------------SIGN UP----------------- */
+
+export const signUp = (userPayload) => async dispatch => {
+    const response = await csrfFetch('/api/users', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userPayload)
+    })
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(setUser(data))
+        return data;
+    }
+    else {
+        return response;
+    }
+}
+
+
 /* ---------------REMOVE USER----------------- */
 const removeUser = () => {
     return {
@@ -44,6 +69,7 @@ const removeUser = () => {
 }
 
 export const sessionRemove = () => async dispatch => {
+
 
     const response = csrfFetch('/api/session', {
         method: "DELETE",
@@ -81,16 +107,13 @@ const session = (state = { user: null }, action) => {
             newState = { ...state };
             newState.user = action.user
             return newState
-            break;
 
         case REMOVE_USER:
             newState = { ...state }
             return newState.user = null;
 
-
         default:
             return state;
-            break;
     }
 }
 

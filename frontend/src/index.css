@@ -6,10 +6,10 @@
 }
 
 body {
+    height: 100vh;
     margin: 0px;
 }
 
 html {
-    height: 100vh;
     font-family: NunitoSans;
 }

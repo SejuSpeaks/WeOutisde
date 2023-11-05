@@ -1,0 +1,67 @@
+#join-us-header {
+    font-size: 30px;
+    color: black;
+}
+
+
+.signup-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.signup-form-container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.57);
+    align-items: center;
+    padding: 87px 13px;
+    border: 1px solid rgb(193, 181, 181);
+    border-radius: 5px;
+    width: 484px;
+    gap: 20px;
+}
+
+/* .signup-textbox {} */
+
+.signup-form {
+    display: flex;
+    align-items: center;
+}
+
+
+.signup-textbox-container {
+    display: flex;
+    flex-direction: column;
+    font-weight: bolder;
+    font-size: 32;
+}
+
+.signup-textbox {
+    border: #CDBABA solid 1px;
+    border-radius: 5px;
+    padding: 7px 30px;
+
+}
+
+.signup-textbox:focus {
+
+    border: 1px rgb(98, 98, 220) solid;
+    outline: none;
+}
+
+.signup-button {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    font-size: 20px;
+    padding: 10px 80px;
+}
+
+.signup-button:hover {
+    background-color: rgba(255, 0, 0, 0.6);
+}
