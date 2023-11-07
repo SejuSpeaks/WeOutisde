@@ -103,6 +103,7 @@ const session = (state = { user: null }, action) => {
     let newState = { ...state }
     switch (action.type) {
         case SET_USER:
+            console.log('ACTIONNN', action)
             newState = { user: action.user };
             return newState
         //return { user: action.user }
