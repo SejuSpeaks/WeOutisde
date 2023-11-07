@@ -1,21 +1,27 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Redirect, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 
 const ProfileButton = ({ user }) => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [showMenu, setShowMenue] = useState(false);
     const ulRef = useRef();
 
-    const logout = (e) => {
-        e.preventDefault();
+    console.log('USER', user)
+
+    const logout = () => {
+        // e.preventDefault();
         dispatch(sessionActions.sessionRemove());
+        history.push('/')
     };
 
     const openMenu = () => {
         if (showMenu) return;
         setShowMenue(true);
     };
+
 
     useEffect(() => {
         if (!showMenu) return;
@@ -38,7 +44,7 @@ const ProfileButton = ({ user }) => {
 
     return (
         <div>
-            <button onClick={() => openMenu()}>
+            <button onClick={openMenu}>
                 <i className="fa-regular fa-circle-user"></i>
             </button>
             <ul className={dropDownClassName} ref={ulRef}>

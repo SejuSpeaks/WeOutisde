@@ -13,6 +13,8 @@ const Navigation = ({ isLoaded }) => {
     const dispatch = useDispatch();
     const sessionStatus = useSelector(state => state.session.user)
 
+    console.log('sessionStatus', sessionStatus)
+
     let loggedInLinks;
     if (sessionStatus) {
         loggedInLinks = (
@@ -30,7 +32,7 @@ const Navigation = ({ isLoaded }) => {
                     <OpenModalButton buttonText={`Log In`} modalComponent={<LoginFormModal />} />
                 </li>
                 <li>
-                    <OpenModalButton buttonText="Sign In" modalComponent={<SignUp />} />
+                    <OpenModalButton buttonText="Sign Up" modalComponent={<SignUp />} />
                 </li>
             </div>
         );
@@ -38,10 +40,11 @@ const Navigation = ({ isLoaded }) => {
 
 
     return (
-        <div>
-            <ul>
+        <div className="navigation-container">
+            <h1 id="logo">WeOutside</h1>
+            <ul className="navigation-links">
                 <li>
-                    <NavLink exact to='/'>Home</NavLink>
+                    <NavLink id='nav-navlink' exact to='/'>Home</NavLink>
                 </li>
                 {isLoaded && loggedInLinks}
             </ul>

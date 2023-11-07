@@ -7,3 +7,24 @@
     color: black
         /* display: none; */
 }
+
+.navigation-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#logo {
+    margin-left: 20px;
+}
+
+.navigation-links {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    margin-right: 20px;
+}
+
+#nav-navlink {
+    text-decoration: none;
+    color: inherit;
+}
