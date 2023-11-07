@@ -27,6 +27,14 @@ form {
     font-weight: bold;
 }
 
+.login-as-demo-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 10px;
+}
+
 .text-box-login {
     padding-left: 12px;
     padding-top: 8px;

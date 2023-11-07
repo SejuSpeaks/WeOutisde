@@ -11,10 +11,18 @@
 .navigation-container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
 }
 
 #logo {
     margin-left: 20px;
+}
+
+#logo:hover {
+    cursor: pointer;
+    color: green;
+
 }
 
 .navigation-links {
@@ -22,6 +30,11 @@
     gap: 10px;
     list-style: none;
     margin-right: 20px;
+}
+
+.nav-logged-out-links {
+    display: flex;
+    gap: 10px;
 }
 
 #nav-navlink {

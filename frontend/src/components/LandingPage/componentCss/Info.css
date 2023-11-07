@@ -1,0 +1,27 @@
+.info-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#landing-page-info-pic {
+    position: relative;
+    bottom: 200px;
+}
+
+.info-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 50px;
+    margin-top: 20px;
+    font-weight: bold;
+    height: min-content;
+}
+
+.info-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: min-content;
+}

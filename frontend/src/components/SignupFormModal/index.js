@@ -17,8 +17,22 @@ const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [disableButton, setDisableButton] = useState(true);
     const [errors, setErrors] = useState({})
     const { closeModal } = useModal();
+
+
+
+    useEffect(() => {
+        if (!username.length || !firstName.length || !lastName.length || !email.length || !password.length || !confirmPassword.length || password.length < 6 || username < 4) {
+            setDisableButton(true)
+        }
+        else {
+            setDisableButton(false)
+        }
+    }, [username, firstName, lastName, email, password, confirmPassword])
+
+    const buttonClassName = "signup-button" + (disableButton ? "disable" : "")
 
     if (sessionUser) return <Redirect to='/' />
 
@@ -37,13 +51,20 @@ const SignUp = () => {
             return dispatch(signUp(user)).then(closeModal)
                 .catch(async res => {
                     const data = await res.json();
-                    data && data.errors ? setErrors(data.errors) : setErrors({})
+                    console.log('DATA', data)
+                    if (data && data.errors) {
+                        setErrors((prevErrors) => ({ ...prevErrors, ...data.errors }));
+                    }
+                    else {
+                        setErrors({})
+                    }
                 })
         }
         return setErrors({ confirmPassword: 'Confirmed Password field must be the same as the Password field' })
 
     }
 
+    console.log(errors)
 
     return (
         <div className='signup-page'>
@@ -91,7 +112,7 @@ const SignUp = () => {
                         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
                     </div>
 
-                    <button className='signup-button' type='submit'>SignUp</button>
+                    <button disabled={disableButton} className={buttonClassName} type='submit'>SignUp</button>
                 </form>
             </div>
         </div>

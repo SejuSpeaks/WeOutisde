@@ -6,6 +6,7 @@ import { restoreUser } from './store/session';
 //component imports
 import Navigation from './components/Navigation';
 import Header from './components/Header';
+import LandingPage from './components/LandingPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -19,7 +20,9 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      {isLoaded && <Switch></Switch>}
+      {isLoaded && <Switch>
+        <Route exact path='/'> <LandingPage /> </Route>
+      </Switch>}
     </>
   )
 
