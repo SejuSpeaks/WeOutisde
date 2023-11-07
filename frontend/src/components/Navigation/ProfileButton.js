@@ -52,6 +52,9 @@ const ProfileButton = ({ user }) => {
                 <li>Hello, {user.firstName} {user.lastName}</li>
                 <li>Email: {user.email}</li>
                 <li>
+                    <button onClick={() => history.push('/groups')}>See all Groups</button>
+                </li>
+                <li>
                     <button onClick={logout}>Log Out</button>
                 </li>
             </ul>

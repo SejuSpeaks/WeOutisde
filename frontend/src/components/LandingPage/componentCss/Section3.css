@@ -1,0 +1,18 @@
+.section3-content-container {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.landing-page-links {
+    color: blue;
+}
+
+.landing-page-links:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.landing-page-linksdisabled {
+    color: lightgray;
+}
