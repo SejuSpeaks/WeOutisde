@@ -28,8 +28,8 @@ export const setUserThunk = (userLoginInformation) => async dispatch => {
 
     if (response.ok) {
         const userData = await response.json();
-        dispatch(setUser(userData));
-        return userData;
+        dispatch(setUser(userData.user));
+        return userData.user;
     }
     else {
         return await response.json()
@@ -70,7 +70,7 @@ const removeUser = () => {
 export const sessionRemove = () => async dispatch => {
 
 
-    const response = csrfFetch('/api/session', {
+    const response = await csrfFetch('/api/session', {
         method: "DELETE",
     })
 
@@ -88,7 +88,7 @@ export const restoreUser = () => async dispatch => {
     if (response.ok) {
         const data = await response.json();
         dispatch(setUser(data.user))
-        return response
+        return data.user;
     }
     else {
         return response.json()
@@ -97,19 +97,19 @@ export const restoreUser = () => async dispatch => {
 
 
 
-
+//let user = null;
 
 const session = (state = { user: null }, action) => {
     let newState = { ...state }
     switch (action.type) {
         case SET_USER:
-            newState = { ...state };
-            newState.user = action.user
+            newState = { user: action.user };
             return newState
+        //return { user: action.user }
 
         case REMOVE_USER:
-            newState = { ...state }
-            return newState.user = null;
+            newState = { user: action.user }
+            return newState;
 
         default:
             return state;

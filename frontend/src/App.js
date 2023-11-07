@@ -5,6 +5,7 @@ import { restoreUser } from './store/session';
 
 //component imports
 import Navigation from './components/Navigation';
+import Header from './components/Header';
 
 function App() {
   const dispatch = useDispatch();
