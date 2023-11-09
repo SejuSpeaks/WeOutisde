@@ -59,14 +59,14 @@ const groups = (state = initialState, action) => {
     switch (action.type) {
         case GET_ALL_GROUPS:
             newState = { ...state }
-            action.allGroups[0].map((group, i) => newState[i] = group)
+            action.allGroups[0].map((group, i) => newState[group.id] = group)
             return newState
             break;
 
         case GET_GROUP:
             newState = { ...state }
             console.log(action, 'GROUPBOII')
-            newState = action.specificGroup;
+            newState[action.specificGroup.id] = action.specificGroup;
             return newState;
 
         default:

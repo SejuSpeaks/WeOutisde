@@ -17,8 +17,15 @@
 }
 
 .group-details-description-container {
-
     margin-left: 25px;
+}
+
+.group-details-CRUD {
+    background-color: darkgrey;
+}
+
+.group-details-CRUDdisable {
+    display: none;
 }
 
 #breadcrum-groups-container {
@@ -33,4 +40,14 @@
     color: white;
     border-radius: 5px;
     font-weight: bold;
+}
+
+#join-group-buttondisable {
+    display: none;
+}
+
+#dot-container {
+    display: inline;
+    position: relative;
+    bottom: 5px;
 }

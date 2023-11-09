@@ -5,3 +5,14 @@
     align-items: center;
 
 }
+
+#what-we-about-events-container {
+    display: flex;
+    flex-direction: column;
+}
+
+
+#what-we-about-events-heading {
+    font-size: 40px;
+    margin: auto;
+}

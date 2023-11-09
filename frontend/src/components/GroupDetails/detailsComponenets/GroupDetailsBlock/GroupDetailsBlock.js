@@ -1,9 +1,16 @@
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import './GroupDetailsBlock.css';
+import { useSelector } from 'react-redux';
 
 const GroupDetailsBlock = ({ group }) => {
+    const user = useSelector(state => state.session.user)
 
     const privacy = group.private ? "Private" : "Public"
+    const nameOfOrganizer = !group.Organizer.firstName ? group.Organizer.username : `${group.Organizer.firstName}  ${group.Organizer.lastName}`
+    const joinGroupClassName = "join-group-button" + (!user || user.id === group.organizerId ? "disable" : "");
+    const crudButtonsClass = 'group-details-CRUD' + (user && user.id === group.organizerId ? "" : "disable");
+
+    console.log(joinGroupClassName)
 
     return (
         <>
@@ -21,12 +28,19 @@ const GroupDetailsBlock = ({ group }) => {
                     <div className="group-details-description-container">
                         <span>{group.Events?.length}</span>
                         <label>events</label>
-                        <span className="dot">.</span>
+
+                        <div id='dot-container'>
+                            <span className="dot">.</span>
+                        </div>
+
                         <span>{privacy}</span>
-                        <p>Organized by {group.Organizer.username}</p>
+                        <p>Organized by {nameOfOrganizer}</p>
                     </div>
 
-                    <button id='join-group-button'>Join Group</button>
+                    <button onClick={() => alert("Feature coming soon")} id={joinGroupClassName}>Join Group</button>
+                    <button className={crudButtonsClass}>Update</button>
+                    <button className={crudButtonsClass}>Delete</button>
+                    <button className={crudButtonsClass}>Create Event</button>
                 </div>
             </div>
         </>

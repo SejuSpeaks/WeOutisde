@@ -1,5 +1,7 @@
 import './WhatWeAbout.css';
 
+import UpComingEvents from '../detailsComponenets/GroupDetailsBlock/UpcomingEvents/UpcomingEvents';
+
 const WhatWeAbout = ({ group }) => {
     return (
         <>
@@ -12,13 +14,13 @@ const WhatWeAbout = ({ group }) => {
 
                 <div>
                     <b>What we're about</b>
-                    <p>{group.description}</p>
+                    <p>{group.about}</p>
                 </div>
 
-                <div>
-                    <b>Upcoming Events {group.Events.length} </b>
-
+                <div id='what-we-about-events-container'>
+                    <b id='what-we-about-events-heading'> {`Events (${group.Events.length})`}</b>
                 </div>
+                <UpComingEvents />
             </div>
         </>
     )

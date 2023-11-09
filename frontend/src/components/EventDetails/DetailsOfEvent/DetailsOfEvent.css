@@ -1,0 +1,8 @@
+.event-show-container-event-details {
+    display: flex;
+}
+
+.event-and-group-description-box {
+    display: flex;
+    flex-direction: column;
+}

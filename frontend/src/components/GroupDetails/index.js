@@ -11,12 +11,12 @@ const GroupDetails = () => {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
     const { groupId } = useParams();
-    const group = useSelector(state => state.groups)
+    const group = useSelector(state => state.groups[groupId])
 
     useEffect(() => {
         const fetchData = async () => {
-            await dispatch(grabGroup(groupId));
-            setIsLoaded(true);
+            await dispatch(grabGroup(groupId))
+            setIsLoaded(true)
         };
 
         fetchData();
