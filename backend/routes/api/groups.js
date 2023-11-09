@@ -130,11 +130,16 @@ router.post('/', requireAuth, ValidateGroup, async (req, res) => {
 
 router.get('/', async (req, res) => {
     const groups = await Group.findAll({
-        include: [{
-            model: User,
-            as: 'Members',
-            attributes: [],
-        }],
+        include: [
+            {
+                model: User,
+                as: 'Members',
+                attributes: [],
+            },
+            {
+                model: Event //included events
+            }
+        ],
         attributes: {
             include: [
                 [
@@ -212,6 +217,9 @@ router.get('/:groupId', async (req, res) => { //fix
                 model: Venue,
                 as: 'Venues'
             },
+            {
+                model: Event
+            }
 
         ],
         attributes: {

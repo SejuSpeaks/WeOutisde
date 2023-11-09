@@ -7,7 +7,7 @@ const Section3 = () => {
     const history = useHistory();
     const user = useSelector(state => state.session.user)
 
-    console.log(user);
+
 
     const newGroupClass = "landing-page-links" + (!user ? "disabled" : "")
 

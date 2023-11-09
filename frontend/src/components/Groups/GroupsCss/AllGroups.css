@@ -1,0 +1,35 @@
+.group-show-container {
+    margin-top: 55px;
+    display: flex;
+    gap: 10px;
+    width: 600px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.group-show-container:hover {
+    cursor: pointer;
+}
+
+
+.group-show-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.group-show-city {
+    color: grey;
+}
+
+.group-show-description {
+    margin-top: 15px;
+}
+
+.group-show-events-container {
+    display: flex;
+    align-items: center;
+}
+
+.dot {
+    margin: 0 5px 10px;
+}

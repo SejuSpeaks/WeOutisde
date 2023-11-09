@@ -87,6 +87,7 @@ export const restoreUser = () => async dispatch => {
 
     if (response.ok) {
         const data = await response.json();
+        console.log('THIS IS DATA', data);
         dispatch(setUser(data.user))
         return data.user;
     }
@@ -103,7 +104,6 @@ const session = (state = { user: null }, action) => {
     let newState = { ...state }
     switch (action.type) {
         case SET_USER:
-            console.log('ACTIONNN', action)
             newState = { user: action.user };
             return newState
         //return { user: action.user }

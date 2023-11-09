@@ -14,7 +14,6 @@ const Navigation = ({ isLoaded }) => {
     const history = useHistory();
     const sessionStatus = useSelector(state => state.session.user)
 
-    console.log('sessionStatus', sessionStatus)
 
     let loggedInLinks;
     if (sessionStatus) {

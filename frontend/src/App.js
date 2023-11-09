@@ -8,6 +8,7 @@ import Navigation from './components/Navigation';
 import Header from './components/Header';
 import LandingPage from './components/LandingPage';
 import Groups from './components/Groups';
+import GroupDetails from './components/GroupDetails';
 
 function App() {
   const dispatch = useDispatch();
@@ -23,7 +24,8 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && <Switch>
         <Route exact path='/'> <LandingPage /> </Route>
-        <Route path='/groups'> <Groups /></Route>
+        <Route exact path='/groups'> <Groups /></Route>
+        <Route path='/groups/:groupId'><GroupDetails /></Route>
       </Switch>}
     </>
   )

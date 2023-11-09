@@ -1,0 +1,36 @@
+.group-details-block-container {
+    display: flex;
+    justify-content: center;
+}
+
+
+.group-details-image-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.group-details-image {
+    width: 480px;
+    /* Set the desired width */
+    height: 300px;
+    /* Set the desired height */
+}
+
+.group-details-description-container {
+
+    margin-left: 25px;
+}
+
+#breadcrum-groups-container {
+    display: flex;
+    justify-content: center;
+
+}
+
+#join-group-button {
+    background-color: red;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+}

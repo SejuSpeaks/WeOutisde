@@ -9,8 +9,6 @@ const ProfileButton = ({ user }) => {
     const [showMenu, setShowMenue] = useState(false);
     const ulRef = useRef();
 
-    console.log('USER', user)
-
     const logout = () => {
         // e.preventDefault();
         dispatch(sessionActions.sessionRemove());
