@@ -18,7 +18,7 @@ const groups = [
     private: false,
     city: 'New York',
     state: 'New York',
-    previewImage: 'https://picsum.photos/200'
+    previewImage: 'https://spaces-wp.imgix.net/2016/06/coding-in-the-classroom.png?auto=compress,format&q=50'
   },
   {
     organizerId: 1,
@@ -28,7 +28,7 @@ const groups = [
     private: false,
     city: 'Kissimmee',
     state: 'Florida',
-    previewImage: 'https://picsum.photos/200'
+    previewImage: 'https://media.entertainmentearth.com/assets/images/de6a2ddfe2a44dde94d425e36f379de1xl.jpg'
   },
   {
     organizerId: 2,
@@ -38,7 +38,7 @@ const groups = [
     private: true,
     city: 'New York',
     state: 'New York',
-    previewImage: 'https://picsum.photos/200'
+    previewImage: 'https://parade.com/.image/t_share/MTkwNTgwOTYzOTM4NDc3MTgx/10-best-cult-podcasts.jpg'
   },
 ]
 

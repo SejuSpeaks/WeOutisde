@@ -11,6 +11,9 @@ const events = [
   {
     groupId: 3,
     venueId: 1,
+    host: 2,
+    startTime: "7:00pm",
+    endTime: "6:00am",
     name: 'go touch grass',
     type: 'In person',
     capacity: 40,
@@ -22,6 +25,9 @@ const events = [
   {
     groupId: 1,
     venueId: 3,
+    host: 3,
+    startTime: "7:00pm",
+    endTime: "6:00am",
     name: 'The Minecraft multiverse',
     type: 'Online',
     capacity: 200,
@@ -34,6 +40,9 @@ const events = [
 
     groupId: 2,
     venueId: 2,
+    host: 1,
+    startTime: "7:00pm",
+    endTime: "6:00am",
     name: 'Yoga class',
     type: 'In person', //fix so people can put inperson In Person ect.
     capacity: 5,

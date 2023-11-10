@@ -12,22 +12,37 @@ const users = [
   {
     email: 'thisisemail@gmail.com',
     username: 'Hooligan',
-    hashedPassword: bcrypt.hashSync('theFirstPass')
+    hashedPassword: bcrypt.hashSync('theFirstPass'),
+    firstName: 'Charles',
+    lastName: 'Goodwin'
+  },
+  {
+    email: 'demo10@gmail.com',
+    username: 'demo10',
+    hashedPassword: bcrypt.hashSync('1234'),
+    firstName: 'Demar',
+    lastName: 'DeroZan'
   },
   {
     email: 'bawgusPatrol@gmail.com',
     username: 'theBawgis',
-    hashedPassword: bcrypt.hashSync('ThisisnotagoodPassword')
+    hashedPassword: bcrypt.hashSync('ThisisnotagoodPassword'),
+    firstName: 'Tirza',
+    lastName: 'Bawgus'
   },
   {
     email: 'Hacker@gmail.com',
     username: 'iAmAHacker',
-    hashedPassword: bcrypt.hashSync('1234')
+    hashedPassword: bcrypt.hashSync('1234'),
+    firstName: 'Mr. ',
+    lastName: 'Robot'
   },
   {
     email: 'America@gmail.com',
     username: 'Joe Biden',
-    hashedPassword: bcrypt.hashSync('IamJoeBiden')
+    hashedPassword: bcrypt.hashSync('IamJoeBiden'),
+    firstName: 'Joe',
+    lastName: 'Biden'
   },
 ]
 

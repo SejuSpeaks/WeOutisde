@@ -122,7 +122,7 @@ router.get('/', validateQuery, async (req, res) => { //fix filters
                 attributes: ['id']
             }
         ],
-        attributes: ['id', 'groupId', 'venueId', 'name', 'type', 'startDate', 'endDate', 'previewImage'],
+        attributes: ['id', 'groupId', 'venueId', 'name', 'description', 'type', 'startDate', 'startTime', 'endDate', 'previewImage'],
         where,
         limit: size,
         offset: offset,
@@ -154,6 +154,11 @@ router.get('/:eventId', async (req, res) => {
             },
             {
                 model: User,
+                as: 'Host',
+                attributes: ['firstName', 'lastName', 'id']
+            },
+            {
+                model: User,
                 as: 'attendee',
                 attributes: []
             },
@@ -164,11 +169,12 @@ router.get('/:eventId', async (req, res) => {
             }
         ],
         attributes: {
-            exclude: ['createdAt', 'updatedAt'],
+            exclude: ['createdAt', 'updatedAt', 'host'],
             include: [[sequelize.fn('COUNT', sequelize.col('attendee.id')), 'numAttending']]
         },
         group: [
             'Event.id',
+            'Host.id',
             //'Venues.id',
             'EventImages.id',
             'Group.id',

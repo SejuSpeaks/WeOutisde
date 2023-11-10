@@ -113,7 +113,7 @@ const validateQuery = [
 
 router.post('/', requireAuth, ValidateGroup, async (req, res) => {
     if (req.user) {
-        const { name, about, type, private, city, state } = req.body
+        const { name, about, type, private, city, state, previewImage } = req.body
         const newGroup = await Group.create({
             organizerId: req.user.id,
             name: name,
@@ -121,7 +121,8 @@ router.post('/', requireAuth, ValidateGroup, async (req, res) => {
             type: type,
             private: private,
             city: city,
-            state: state
+            state: state,
+            previewImage: previewImage
         })
         res.status(201);
         return res.json(newGroup)

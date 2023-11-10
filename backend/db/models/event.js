@@ -20,11 +20,15 @@ module.exports = (sequelize, DataTypes) => {
         Event.belongsTo(models.Group, { foreignKey: 'groupId' }),
         Event.hasMany(models.EventImage, { foreignKey: 'eventId', as: 'EventImages' }),
         Event.belongsTo(models.Venue, { foreignKey: 'venueId' });
+      Event.belongsTo(models.User, { foreignKey: "id", as: 'Host', onDelete: 'cascade' });
     }
   }
   Event.init({
     groupId: DataTypes.INTEGER,
     venueId: DataTypes.INTEGER,
+    host: DataTypes.INTEGER,
+    startTime: DataTypes.STRING,
+    endTime: DataTypes.STRING,
     name: {
       type: DataTypes.STRING,
       validate: {
