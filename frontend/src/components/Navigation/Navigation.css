@@ -25,6 +25,11 @@
 
 }
 
+.nav-in-out-links {
+    display: flex;
+    gap: 10px;
+}
+
 .navigation-links {
     display: flex;
     gap: 10px;

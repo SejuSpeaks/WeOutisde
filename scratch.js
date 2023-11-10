@@ -169,3 +169,58 @@
 // }
 
 // checkDate("2000-11-22 20:00:00")
+
+
+
+
+
+/*
+--------------------------------------------------------------------------------
+
+//errors with constraints seemed to fix once i added id's to users but then it crashed again on venues i guess
+
+
+Adding Event Host
+
+i can just add user id to the return object and return the property of that object named as host
+
+add.column("host", {
+    type: INTEGER
+})
+
+npx dotenv db:migration:generate --name addHost
+
+model
+add new host column to event Model
+
+seeders
+find user that belong to group add as host
+
+in event post add the host to the model build
+
+add user.firstname to model build
+add user.lastname to model build
+
+
+associate the host to a user
+
+-----------------------------------------
+
+
+
+create new migration file
+    -add column host
+    -
+
+add host column to model file
+
+fix seeders to have host of event
+
+on the post just have the user id be the host ::figure it out
+
+
+add user seeder that matches the demo user
+    -username demo10
+    -password 1234
+
+*/

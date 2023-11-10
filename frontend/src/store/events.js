@@ -2,8 +2,35 @@ import { csrfFetch } from "./csrf";
 
 //----------------------------------------------------------------------------------------------//
 const GET_GROUP_EVENTS = 'events/GET_GROUP_EVENTS';
+const GET_ALL_EVENTS = 'events/GET_ALL_EVENTS';
 const GET_EVENT_BY_ID = 'events/GET_EVENT_BY_ ID';
 const CLEAR_EVENTS = 'events/CLEAR_EVENTS';
+
+/*---------------------------------------------------------------------- */
+
+//action get all events
+const getEvents = (events) => {
+    return {
+        type: GET_ALL_EVENTS,
+        events
+    }
+}
+
+//thunk get all events
+export const getAllEvents = () => async dispatch => {
+    const res = await csrfFetch('/api/events')
+
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(getEvents(data.Events))
+        return data.Events
+    }
+}
+
+
+
+/*--------------------------------------------------------------------- */
+
 
 /* get all events from group action */
 const getGroupEvents = (groupEvents) => {
@@ -68,6 +95,10 @@ const events = (state = {}, action) => {
     switch (action.type) {
         case CLEAR_EVENTS:
             return newState = {}
+
+        case GET_ALL_EVENTS:
+            action.events.map(event => newState[event.id] = event)
+            return newState;
 
         case GET_GROUP_EVENTS:
             action.groupEvents.map(event => newState[event.id] = event)

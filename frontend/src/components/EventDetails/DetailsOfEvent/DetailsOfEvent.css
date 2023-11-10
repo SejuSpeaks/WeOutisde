@@ -1,8 +1,24 @@
 .event-show-container-event-details {
     display: flex;
+    gap: 10px;
 }
 
 .event-and-group-description-box {
     display: flex;
     flex-direction: column;
+    gap: 25px;
+}
+
+.event-page-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.update-delete-event-buttonsdisable {
+    display: none;
+}
+
+.update-delete-event-buttons {
+    background-color: darkgrey;
 }

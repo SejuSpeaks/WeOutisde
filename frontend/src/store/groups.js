@@ -2,6 +2,43 @@ import { csrfFetch } from "./csrf"
 
 const GET_ALL_GROUPS = 'groups/GETGROUPS'
 const GET_GROUP = 'groups/GETGROUP'
+const CREATE_GROUP = 'groups/CREATE'
+const CLEAR_GROUPS = 'groups/CLEAR';
+
+
+/*-------------------------------------------------------------------------- */
+//action create Group
+const createAGroup = (createdGroup) => {
+    return {
+        type: CREATE_GROUP,
+        createdGroup
+    }
+}
+
+export const CreateGroup = (groupReceived) => async dispatch => {
+    const res = await csrfFetch('/api/groups', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(groupReceived)
+    })
+
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(createAGroup(data));
+        return data
+    }
+    else {
+        const data = await res.json();
+        throw new Error(data.errors)
+        return data.errors
+    }
+
+}
+
+
+
 
 /*------------------------------------------------------------------------- */
 
@@ -49,6 +86,14 @@ export const grabGroup = (groupId) => async dispatch => {
 
 /**----------------------------------------------------------------- */
 
+export const clearGroups = () => {
+    return {
+        type: CLEAR_GROUPS,
+    }
+}
+
+/*------------------------------------------------------------- */
+
 
 
 
@@ -57,10 +102,19 @@ const initialState = {}
 const groups = (state = initialState, action) => {
     let newState;
     switch (action.type) {
+        case CLEAR_GROUPS:
+            return newState = {};
+
         case GET_ALL_GROUPS:
             newState = { ...state }
             action.allGroups[0].map((group, i) => newState[group.id] = group)
             return newState
+            break;
+
+        case CREATE_GROUP:
+            newState = { ...state }
+            newState[action.createdGroup.id] = action.createdGroup;
+            return newState;
             break;
 
         case GET_GROUP:
@@ -68,6 +122,7 @@ const groups = (state = initialState, action) => {
             console.log(action, 'GROUPBOII')
             newState[action.specificGroup.id] = action.specificGroup;
             return newState;
+            break;
 
         default:
             return state;

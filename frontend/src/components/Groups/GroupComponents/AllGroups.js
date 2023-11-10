@@ -27,7 +27,7 @@ const AllGroups = () => {
                 <div className="group-show-container">
 
                     <div className="group-show-image-container">
-                        <img src={group.previewImage} />
+                        < img src={group.previewImage} className="group-preview-image" />
                     </div>
 
                     <div className="group-show-description-container">

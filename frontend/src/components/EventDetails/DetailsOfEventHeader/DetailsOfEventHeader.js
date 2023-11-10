@@ -7,7 +7,7 @@ const DetailsOfEvent = ({ event }) => {
         <div>
             <Link to='/events'>Events</Link>
             <h1>{event.name}</h1>
-            <span>Hosted by { }</span>
+            <span>Hosted by {`${event.Host.firstName} ${event.Host.lastName}`}</span>
         </div>
     )
 }

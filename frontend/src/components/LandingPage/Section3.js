@@ -21,13 +21,13 @@ const Section3 = () => {
 
             <div className="find-an-event-landing-page-container">
                 <img src='none'></img>
-                <p className='landing-page-links'>Find an Event</p>
+                <p className='landing-page-links' onClick={() => history.push('/events')}>Find an Event</p>
                 <p>Come check out new Events blah blah blah</p>
             </div>
 
             <div className="start-new-group-landing-page-container">
                 <img src='none'></img>
-                <p className={newGroupClass}>Start a new group</p>
+                <p className={newGroupClass} onClick={() => history.push('/groups/new')}>Start a new group</p>
                 <p>Come check out new groups blah blah blah</p>
             </div>
 

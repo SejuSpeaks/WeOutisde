@@ -1,0 +1,4 @@
+.event-description-container-event-description {
+    display: flex;
+    flex-direction: column;
+}

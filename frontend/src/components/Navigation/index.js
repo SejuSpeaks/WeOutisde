@@ -18,7 +18,10 @@ const Navigation = ({ isLoaded }) => {
     let loggedInLinks;
     if (sessionStatus) {
         loggedInLinks = (
-            <div>
+            <div className="nav-in-out-links">
+                <li>
+                    <NavLink id='nav-navlink' exact to='/groups/new'>Create new Group</NavLink>
+                </li>
                 <li>
                     <ProfileButton user={sessionStatus} />
                 </li>
@@ -49,9 +52,6 @@ const Navigation = ({ isLoaded }) => {
         <div className="navigation-container">
             <h1 id="logo" onClick={returnHome}>WeOutside</h1>
             <ul className="navigation-links">
-                <li>
-                    <NavLink id='nav-navlink' exact to='/'>Home</NavLink>
-                </li>
                 {isLoaded && loggedInLinks}
             </ul>
         </div>

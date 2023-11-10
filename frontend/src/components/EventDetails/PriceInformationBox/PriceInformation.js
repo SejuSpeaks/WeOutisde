@@ -18,14 +18,14 @@ const PriceInformation = ({ event }) => {
                             <p>Start</p>
                             <p>{event.startDate}</p>
                             <p className='dot'>.</p>
-                            <p>5:00pm</p>
+                            <p>{event.startTime}</p>
                         </div>
 
                         <div className='time-containers'>
                             <p>End</p>
                             <p>{event.endDate}</p>
                             <p className='dot'>.</p>
-                            <p>9:00pm</p>
+                            <p>{event.endTime}</p>
                         </div>
                     </div>
 
@@ -34,12 +34,12 @@ const PriceInformation = ({ event }) => {
 
                 <div className='price-of-event-container'>
                     <i className="fa-regular fa-money-bill-1"></i>
-                    <p>{event.price}</p>
+                    <p>{event.price === 0 ? 'FREE' : event.price}</p>
                 </div>
 
                 <div className='type-of-event-container'>
                     <i class="fa-regular fa-location-arrow"></i>
-                    <p>{event.type}</p>
+                    <p>{event.type ? 'Public' : 'Private'}</p>
                 </div>
             </div>
         </>

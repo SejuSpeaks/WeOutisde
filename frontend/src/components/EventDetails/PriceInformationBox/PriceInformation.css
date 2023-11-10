@@ -1,10 +1,12 @@
 .price-information-box-event-details {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 15px;
     border-radius: 5px;
     font-size: 20px;
     background-color: lightgray;
+    line-height: 17px;
+    padding: 12px 5px;
 }
 
 .time-box-event-details {

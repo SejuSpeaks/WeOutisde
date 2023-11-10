@@ -9,13 +9,17 @@ import './DetailsOfEvent.css'
 import DetailsOfEventHeader from '../DetailsOfEventHeader/DetailsOfEventHeader'
 import GroupDetailsBox from "../GroupDetailBox/GroupDetailBox";
 import PriceInformation from "../PriceInformationBox/PriceInformation";
+import EventDescription from "../EventDescription/EventDescription";
 
 const DetailsOfEvent = () => {
     const dispatch = useDispatch();
     const { eventId } = useParams();
     const [isLoaded, setIsLoaded] = useState(false);
     const event = useSelector(state => state.events[eventId])
-    let eventPreviewImage;
+    const user = useSelector(state => state.session.user)
+
+    let buttonClassName = 'update-delete-event-buttons' + (!user || !event || !event.Host || user.id !== event.Host.id ? 'disable' : '');
+
 
     useEffect(() => {
         console.log('disptching events yippie')
@@ -24,23 +28,31 @@ const DetailsOfEvent = () => {
     }, [dispatch, eventId])
 
     // console.log('checking i am checking', eventPreviewImage);
-    // {const eventPreviewImage = !event.previewImage ? "https://placehold.co/600x400" : event.previewImage}
+    //const buttonClassName =
+
 
     return (
         <div>
             {isLoaded && (
                 <>
-                    <DetailsOfEventHeader event={event} />
-                    <div className="event-show-container-event-details">
+                    <div className="event-page-box">
+                        <DetailsOfEventHeader event={event} />
+                        <div className="event-show-container-event-details">
+                            <div>
+                                <img src={"https://placehold.co/600x400"} alt="Event Preview" />
+                            </div>
+
+                            <div className="event-and-group-description-box">
+                                <GroupDetailsBox event={event} />
+                                <PriceInformation event={event} />
+                                <button className={buttonClassName}>Update</button>
+                                <button className={buttonClassName}>Delete</button>
+                            </div>
+
+                        </div>
                         <div>
-                            <img src={event.previewImage} alt="Event Preview" />
+                            <EventDescription event={event} />
                         </div>
-
-                        <div className="event-and-group-description-box">
-                            <GroupDetailsBox event={event} />
-                            <PriceInformation event={event} />
-                        </div>
-
                     </div>
                 </>
             )}

@@ -11,13 +11,17 @@ const UpComingEvents = () => {
     const { groupId } = useParams();
     const events = useSelector(state => state.events);
     const [isLoaded, setIsLoaded] = useState(false)
+    const [error, setError] = useState(null);
 
 
     useEffect(() => {
         dispatch(clearEvents())
         dispatch(allGroupEvents(groupId))
             .then(() => setIsLoaded(true))
-    }, [dispatch])
+            .catch((error) => {
+                setError(error);
+            });
+    }, [dispatch, groupId])
 
 
     const groupEvents = Object.values(events)
@@ -30,6 +34,7 @@ const UpComingEvents = () => {
                 id: event.id,
                 startDate: new Date(event.startDate),
                 name: event.name,
+                startTime: event.startTime,
                 city: eventVenue.city,
                 description: event.description,
                 state: eventVenue.state,
@@ -54,7 +59,7 @@ const UpComingEvents = () => {
                 </div>
                 {event.description}
                 <div>
-                    <date>{event.startDate.toDateString()}</date>
+                    <date>{`${event.startDate.toDateString()} ${event.startTime}`}</date>
                     <b>{event.name}</b>
                     <p>
                         {event.city} {event.state}
@@ -62,6 +67,7 @@ const UpComingEvents = () => {
                 </div>
             </div>
         ));
+
 
     return (
         <>

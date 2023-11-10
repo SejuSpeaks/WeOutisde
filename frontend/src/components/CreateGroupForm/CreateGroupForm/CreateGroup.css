@@ -1,0 +1,25 @@
+.create-group-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* text-align: left; */
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    gap: 10px;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    /* border-bottom: 1px black solid; */
+    border-top: 1px black solid;
+}
+
+.create-group-final-steps {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 20px;
+}
