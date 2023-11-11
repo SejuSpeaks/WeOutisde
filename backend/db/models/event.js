@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         Event.belongsTo(models.Group, { foreignKey: 'groupId' }),
         Event.hasMany(models.EventImage, { foreignKey: 'eventId', as: 'EventImages' }),
         Event.belongsTo(models.Venue, { foreignKey: 'venueId' });
-      Event.belongsTo(models.User, { foreignKey: "id", as: 'Host', onDelete: 'cascade' });
+      Event.belongsTo(models.User, { foreignKey: "host", as: 'Host', onDelete: 'cascade' });
     }
   }
   Event.init({
@@ -46,7 +46,10 @@ module.exports = (sequelize, DataTypes) => {
         isIn: [['Online', 'In person']]
       }
     },
-    capacity: DataTypes.INTEGER,
+    capacity: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
     price: DataTypes.FLOAT,
     startDate: {
       type: DataTypes.STRING,

@@ -169,7 +169,7 @@ router.get('/:eventId', async (req, res) => {
             }
         ],
         attributes: {
-            exclude: ['createdAt', 'updatedAt', 'host'],
+            exclude: ['createdAt', 'updatedAt',],
             include: [[sequelize.fn('COUNT', sequelize.col('attendee.id')), 'numAttending']]
         },
         group: [

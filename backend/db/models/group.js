@@ -41,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         max: 250,
-        min: 50
+        min: 30
       }
     },
     type: {
