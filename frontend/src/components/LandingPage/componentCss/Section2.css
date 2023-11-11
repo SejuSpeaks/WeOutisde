@@ -1,5 +1,22 @@
 .section2-content-container {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    /* border: red 1px solid; */
+    margin-bottom: 75px;
     align-items: center;
+}
+
+#how-we-outside-works-header {
+    font-size: 55px;
+    margin: 0px;
+}
+
+#text-how-it-works {
+    font-size: 26px;
+}
+
+#color-change-weoutside {
+    color: #A991E5;
 }

@@ -5,8 +5,9 @@ const GET_GROUP_EVENTS = 'events/GET_GROUP_EVENTS';
 const GET_ALL_EVENTS = 'events/GET_ALL_EVENTS';
 const GET_EVENT_BY_ID = 'events/GET_EVENT_BY_ ID';
 const CLEAR_EVENTS = 'events/CLEAR_EVENTS';
+const CREATE_EVENT = 'events/CREATE'
 
-/*---------------------------------------------------------------------- */
+/*-----------------------GET ALL EVENTS----------------------------------------------- */
 
 //action get all events
 const getEvents = (events) => {
@@ -29,7 +30,7 @@ export const getAllEvents = () => async dispatch => {
 
 
 
-/*--------------------------------------------------------------------- */
+/*----------------------GET ALL GROUP EVENTS----------------------------------------------- */
 
 
 /* get all events from group action */
@@ -82,10 +83,39 @@ export const clearEvents = () => {
 }
 
 
+/*---------------------CREATE EVENT----------------------------------- */
+//action create event
+const createAEvent = (eventCreated) => {
+    return {
+        type: CREATE_EVENT,
+        eventCreated
+    }
+}
+
+//thunk create event
+
+export const createEvent = (groupId, event) => async dispatch => {
+    const res = await csrfFetch(`/api/groups/${groupId}/events`, {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify(event)
+    })
+
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(createAEvent(data))
+        return data
+    }
+    else {
+        const data = await res.json()
+        return data.errors
+    }
+}
 
 
-
-/*------------------------------------ */
+/*-------------------------------------------------------- */
 
 
 /*Events reducer */
@@ -93,6 +123,10 @@ export const clearEvents = () => {
 const events = (state = {}, action) => {
     let newState = { ...state }
     switch (action.type) {
+        case CREATE_EVENT:
+            newState[action.eventCreated.id] = action.eventCreated
+            return newState;
+
         case CLEAR_EVENTS:
             return newState = {}
 

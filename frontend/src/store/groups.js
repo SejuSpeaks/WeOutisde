@@ -1,12 +1,37 @@
 import { csrfFetch } from "./csrf"
 
-const GET_ALL_GROUPS = 'groups/GETGROUPS'
-const GET_GROUP = 'groups/GETGROUP'
-const CREATE_GROUP = 'groups/CREATE'
+const GET_ALL_GROUPS = 'groups/GETGROUPS';
+const GET_GROUP = 'groups/GETGROUP';
+const CREATE_GROUP = 'groups/CREATE';
 const CLEAR_GROUPS = 'groups/CLEAR';
+const UPDATE_GROUP = 'groups/UPDATE';
+const DELETE_GROUP = 'groups/DELETE';
 
 
-/*-------------------------------------------------------------------------- */
+/*-----------------------------DELETE GROUP--------------------------------------------- */
+//action delete group
+const groupDelete = (deletedGroup) => {
+    return {
+        type: DELETE_GROUP,
+        deletedGroup
+    }
+}
+
+//thunk delete group
+export const deleteGroup = (groupId) => async dispatch => {
+    const res = await csrfFetch(`/api/groups/${groupId}`, {
+        method: 'DELETE',
+    })
+
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(groupDelete(data))
+        return data
+    }
+}
+
+
+/*------------------------------------------------------------------------------------- */
 //action create Group
 const createAGroup = (createdGroup) => {
     return {
@@ -40,7 +65,42 @@ export const CreateGroup = (groupReceived) => async dispatch => {
 
 
 
-/*------------------------------------------------------------------------- */
+/*---------------------------UPDATE GROUP---------------------------------------------- */
+
+//action update group
+const groupUpdate = (updatedGroup) => {
+    return {
+        type: UPDATE_GROUP,
+        updatedGroup
+    }
+}
+
+
+//thunk update group
+
+export const updateGroup = (groupId, groupPayload) => async dispatch => {
+    const res = await csrfFetch(`/api/groups/${groupId}`, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(groupPayload)
+    })
+
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(groupUpdate(data))
+        return data
+    }
+    else {
+        const data = await res.json()
+        return data.errors
+    }
+}
+
+
+
+/*-------------------------------------------------------------------------- */
 
 /*Get all Groups action creator */
 const getGroups = (allGroups) => {
@@ -52,7 +112,7 @@ const getGroups = (allGroups) => {
 
 /* Get all Groups thunk */
 export const getAllGroups = () => async dispatch => {
-    const response = await csrfFetch('api/groups')
+    const response = await csrfFetch('/api/groups')
 
     if (response.ok) {
         const data = await response.json();
@@ -102,6 +162,11 @@ const initialState = {}
 const groups = (state = initialState, action) => {
     let newState;
     switch (action.type) {
+        case DELETE_GROUP:
+            newState = { ...state };
+            delete newState[action.groupId];
+            return newState;
+
         case CLEAR_GROUPS:
             return newState = {};
 
@@ -118,11 +183,11 @@ const groups = (state = initialState, action) => {
             break;
 
         case GET_GROUP:
-            newState = { ...state }
-            console.log(action, 'GROUPBOII')
-            newState[action.specificGroup.id] = action.specificGroup;
-            return newState;
+            return { ...state, [action.specificGroup.id]: action.specificGroup };
             break;
+
+        case UPDATE_GROUP:
+            return { ...state, [action.updatedGroup.id]: action.updateGroup }
 
         default:
             return state;

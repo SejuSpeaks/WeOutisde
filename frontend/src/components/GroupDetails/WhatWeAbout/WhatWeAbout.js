@@ -20,7 +20,7 @@ const WhatWeAbout = ({ group }) => {
                 <div id='what-we-about-events-container'>
                     <b id='what-we-about-events-heading'> {`Events (${group.Events.length})`}</b>
                 </div>
-                <UpComingEvents />
+                <UpComingEvents group={group} />
             </div>
         </>
     )

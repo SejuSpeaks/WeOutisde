@@ -11,8 +11,8 @@ const EventsList = ({ events }) => {
             name: event.name,
             startDate: event.startDate,
             startTime: event.startTime,
-            city: event.Venue.city,
-            state: event.Venue.state,
+            city: event.Group.city,
+            state: event.Group.state,
             description: event.description
         }
     })
@@ -33,7 +33,7 @@ const EventsList = ({ events }) => {
 
                         <div className='event-top-half-container'>
                             <div>
-                                <img src={'https://placehold.co/200x200'} />
+                                <img className='event-images' src={event.previewImage} />
                             </div>
 
                             <div >

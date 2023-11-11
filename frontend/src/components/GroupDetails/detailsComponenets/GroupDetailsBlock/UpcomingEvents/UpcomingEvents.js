@@ -5,7 +5,7 @@ import { useParams, useHistory } from "react-router-dom";
 
 import './UpcomingEvents.css'
 
-const UpComingEvents = () => {
+const UpComingEvents = ({ group }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { groupId } = useParams();
@@ -35,9 +35,7 @@ const UpComingEvents = () => {
                 startDate: new Date(event.startDate),
                 name: event.name,
                 startTime: event.startTime,
-                city: eventVenue.city,
                 description: event.description,
-                state: eventVenue.state,
             };
         })
         .sort((a, b) => {
@@ -62,7 +60,7 @@ const UpComingEvents = () => {
                     <date>{`${event.startDate.toDateString()} ${event.startTime}`}</date>
                     <b>{event.name}</b>
                     <p>
-                        {event.city} {event.state}
+                        {group.city} {group.state}
                     </p>
                 </div>
             </div>

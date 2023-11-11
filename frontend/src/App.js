@@ -12,6 +12,8 @@ import GroupDetails from './components/GroupDetails';
 import DetailsOfEvent from './components/EventDetails/DetailsOfEvent/DetailsOfEvent';
 import AllEvents from './components/AllEvents/AllEvents/AllEvents';
 import CreateGroupForm from './components/CreateGroupForm/CreateGroupForm/CreateGroupForm';
+import CreateEvent from './components/CreateEvent/CreateEvent/CreateEvent';
+import UpdateGroup from './components/UpdateGroup/UpdateGroup/UpdateGroup';
 
 function App() {
   const dispatch = useDispatch();
@@ -29,7 +31,9 @@ function App() {
         <Route exact path='/'> <LandingPage /> </Route>
         <Route exact path='/groups'> <Groups /></Route>
         <Route exact path='/groups/new'> <CreateGroupForm /> </Route>
-        <Route path='/groups/:groupId'><GroupDetails /></Route>
+        <Route path='/groups/:groupId/update'> <UpdateGroup /> </Route>
+        <Route exact path='/groups/:groupId'><GroupDetails /></Route>
+        <Route exact path='/:groupId/events/new'> <CreateEvent /> </Route>
         <Route path='/events/:eventId'> <DetailsOfEvent /> </Route>
         <Route exact path='/events'> <AllEvents /> </Route>
       </Switch>}

@@ -8,13 +8,15 @@ import './LandingPage.css'
 
 const LandingPage = () => {
     return (
-        <div>
+        <div className='landing-page-container'>
             <div className='info-component-container'>
                 <Info />
             </div>
-            <div>
+
+            <div className='section-2'>
                 <Section2 />
             </div>
+
             <div>
                 <Section3 />
             </div>

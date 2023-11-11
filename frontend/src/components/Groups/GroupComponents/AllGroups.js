@@ -1,6 +1,6 @@
 import { useHistory, Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useEffect, useState } from "react";
-import { getAllGroups } from "../../../store/groups";
+import { getAllGroups, clearGroups } from "../../../store/groups";
 import { useDispatch, useSelector } from "react-redux";
 
 
@@ -13,6 +13,7 @@ const AllGroups = () => {
     let groups = useSelector(state => state.groups)
 
     useEffect(() => {
+        dispatch(clearGroups())
         dispatch(getAllGroups())
             .then(() => setIsLoaded(true))
     }, [dispatch])

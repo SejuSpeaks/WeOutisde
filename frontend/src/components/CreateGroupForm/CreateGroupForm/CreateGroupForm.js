@@ -73,8 +73,6 @@ const CreateGroupForm = () => {
         //send errors out
 
         //redirect
-        console.log(groups, 'this is groups OBJECT')
-
 
     }
 

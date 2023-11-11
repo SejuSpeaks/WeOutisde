@@ -1,0 +1,10 @@
+.group-delete-yes-button {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+}
+
+.group-delete-no-button {
+    background-color: darkgray;
+    font-weight: bold;
+}

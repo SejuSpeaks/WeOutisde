@@ -39,7 +39,7 @@ const DetailsOfEvent = () => {
                         <DetailsOfEventHeader event={event} />
                         <div className="event-show-container-event-details">
                             <div>
-                                <img src={"https://placehold.co/600x400"} alt="Event Preview" />
+                                <img className="event-details-img" src={event.previewImage} alt="Event Preview" />
                             </div>
 
                             <div className="event-and-group-description-box">

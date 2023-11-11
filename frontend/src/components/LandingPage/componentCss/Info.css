@@ -2,20 +2,22 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
+    gap: 56px;
+    margin-bottom: 100px;
 }
 
 #landing-page-info-pic {
     position: relative;
-    bottom: 200px;
-    z-index: -1;
+    height: 590px;
+    width: 590px;
+    object-fit: fill;
 }
 
 .info-text-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin-left: 50px;
-    margin-top: 20px;
     font-weight: bold;
     height: min-content;
 }
@@ -25,4 +27,13 @@
     align-items: center;
     justify-content: center;
     height: min-content;
+}
+
+#get-out-get-active-slogan {
+    font-size: 75px;
+    text-wrap: wrap;
+}
+
+#landing-page-caption {
+    font-size: 25px;
 }

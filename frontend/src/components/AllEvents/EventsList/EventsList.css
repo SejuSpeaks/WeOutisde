@@ -13,6 +13,11 @@
     gap: 10px;
 }
 
+.event-images {
+    height: 200px;
+    width: 200px;
+}
+
 .event-start-times-container {
     display: flex;
     align-items: center;

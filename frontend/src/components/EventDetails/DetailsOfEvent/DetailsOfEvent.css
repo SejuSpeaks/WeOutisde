@@ -22,3 +22,8 @@
 .update-delete-event-buttons {
     background-color: darkgrey;
 }
+
+.event-details-img {
+    height: 400px;
+    width: 600px;
+}

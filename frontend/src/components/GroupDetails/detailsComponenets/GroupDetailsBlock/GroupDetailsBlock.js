@@ -1,8 +1,11 @@
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link, useHistory, Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import './GroupDetailsBlock.css';
 import { useSelector } from 'react-redux';
+import OpenModalButton from '../../../OpenModalButton';
+import GroupConfirmDelete from '../../../GroupConfirmDelete';
 
 const GroupDetailsBlock = ({ group }) => {
+    const history = useHistory();
     const user = useSelector(state => state.session.user)
 
     const privacy = group.private ? "Private" : "Public"
@@ -38,9 +41,9 @@ const GroupDetailsBlock = ({ group }) => {
                     </div>
 
                     <button onClick={() => alert("Feature coming soon")} id={joinGroupClassName}>Join Group</button>
-                    <button className={crudButtonsClass}>Update</button>
-                    <button className={crudButtonsClass}>Delete</button>
-                    <button className={crudButtonsClass}>Create Event</button>
+                    <button className={crudButtonsClass} onClick={() => history.push(`/groups/${group.id}/update`)}>Update</button>
+                    <OpenModalButton className={crudButtonsClass} buttonText={"Delete"} modalComponent={<GroupConfirmDelete group={group} />} />
+                    <button className={crudButtonsClass} onClick={() => history.push(`/${group.id}/events/new`)}>Create Event</button>
                 </div>
             </div>
         </>
