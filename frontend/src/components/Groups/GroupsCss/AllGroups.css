@@ -1,0 +1,45 @@
+.group-show-container {
+    margin-top: 55px;
+    display: flex;
+    gap: 10px;
+    width: 600px;
+    border: 2px solid #a991e5;
+    padding: 12px 18px;
+    color: white;
+}
+
+.link-for-group-show {
+    text-decoration: none;
+}
+
+.group-show-container:hover {
+    cursor: pointer;
+}
+
+
+.group-show-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.group-show-city {
+    color: grey;
+}
+
+.group-show-description {
+    margin-top: 15px;
+}
+
+.group-show-events-container {
+    display: flex;
+    align-items: center;
+}
+
+.dot {
+    margin: 0 5px 10px;
+}
+
+.group-preview-image {
+    height: 200px;
+    width: 200px
+}

@@ -51,8 +51,8 @@ export const signUp = (userPayload) => async dispatch => {
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(setUser(data))
-        return data;
+        dispatch(setUser(data.user))
+        return data.user;
     }
     else {
         return response;
@@ -87,6 +87,7 @@ export const restoreUser = () => async dispatch => {
 
     if (response.ok) {
         const data = await response.json();
+        console.log('THIS IS DATA', data);
         dispatch(setUser(data.user))
         return data.user;
     }

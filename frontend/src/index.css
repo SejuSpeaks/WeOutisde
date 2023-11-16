@@ -11,5 +11,9 @@ body {
 }
 
 html {
-    font-family: NunitoSans;
+    font-family: Inter;
+}
+
+p {
+    margin: 0px
 }

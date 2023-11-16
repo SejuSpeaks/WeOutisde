@@ -1,0 +1,39 @@
+.info-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 56px;
+    margin-bottom: 18px;
+}
+
+#landing-page-info-pic {
+    position: relative;
+    height: 590px;
+    width: 590px;
+    object-fit: fill;
+}
+
+.info-text-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    font-weight: bold;
+    height: min-content;
+}
+
+.info-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: min-content;
+}
+
+#get-out-get-active-slogan {
+    font-size: 75px;
+    text-wrap: wrap;
+}
+
+#landing-page-caption {
+    font-size: 25px;
+}

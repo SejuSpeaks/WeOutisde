@@ -6,6 +6,14 @@ import { restoreUser } from './store/session';
 //component imports
 import Navigation from './components/Navigation';
 import Header from './components/Header';
+import LandingPage from './components/LandingPage';
+import Groups from './components/Groups';
+import GroupDetails from './components/GroupDetails';
+import DetailsOfEvent from './components/EventDetails/DetailsOfEvent/DetailsOfEvent';
+import AllEvents from './components/AllEvents/AllEvents/AllEvents';
+import CreateGroupForm from './components/CreateGroupForm/CreateGroupForm/CreateGroupForm';
+import CreateEvent from './components/CreateEvent/CreateEvent/CreateEvent';
+import UpdateGroup from './components/UpdateGroup/UpdateGroup/UpdateGroup';
 
 function App() {
   const dispatch = useDispatch();
@@ -19,7 +27,16 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      {isLoaded && <Switch></Switch>}
+      {isLoaded && <Switch>
+        <Route exact path='/'> <LandingPage /> </Route>
+        <Route exact path='/groups'> <Groups /></Route>
+        <Route exact path='/groups/new'> <CreateGroupForm /> </Route>
+        <Route path='/groups/:groupId/update'> <UpdateGroup /> </Route>
+        <Route exact path='/groups/:groupId'><GroupDetails /></Route>
+        <Route exact path='/:groupId/events/new'> <CreateEvent /> </Route>
+        <Route path='/events/:eventId'> <DetailsOfEvent /> </Route>
+        <Route exact path='/events'> <AllEvents /> </Route>
+      </Switch>}
     </>
   )
 

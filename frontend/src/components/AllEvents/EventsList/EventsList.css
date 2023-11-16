@@ -1,0 +1,29 @@
+.event-container-all-events {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #A991E5;
+    margin: 20px 0px;
+    padding: 10px 12px;
+    color: white;
+}
+
+.event-top-half-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.event-images {
+    height: 200px;
+    width: 200px;
+}
+
+.event-start-times-container {
+    display: flex;
+    align-items: center;
+}
+
+.event-group-link-wrap {
+    text-decoration: none;
+    color: black;
+}

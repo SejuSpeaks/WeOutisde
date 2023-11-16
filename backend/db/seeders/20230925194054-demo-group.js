@@ -13,22 +13,22 @@ const groups = [
   {
     organizerId: 3,
     name: 'Daily Coding',
-    about: 'we code everyday',
+    about: 'We focus on becoming better programmers. everyday we have classes from 4am to 11pm',
     type: 'Online',
     private: false,
     city: 'New York',
     state: 'New York',
-    previewImage: 'https://picsum.photos/200'
+    previewImage: 'https://spaces-wp.imgix.net/2016/06/coding-in-the-classroom.png?auto=compress,format&q=50'
   },
   {
     organizerId: 1,
     name: 'Minecraft',
-    about: 'Just Minecraft dude',
+    about: 'We minecraft everyday no matter what is happening in our lives we will minecraft alright',
     type: 'In person',
     private: false,
     city: 'Kissimmee',
     state: 'Florida',
-    previewImage: 'https://picsum.photos/200'
+    previewImage: 'https://assets-prd.ignimgs.com/2022/06/29/minecraft-treehouse-thumbnail-1656532676907.jpg'
   },
   {
     organizerId: 2,
@@ -38,7 +38,7 @@ const groups = [
     private: true,
     city: 'New York',
     state: 'New York',
-    previewImage: 'https://picsum.photos/200'
+    previewImage: 'https://parade.com/.image/t_share/MTkwNTgwOTYzOTM4NDc3MTgx/10-best-cult-podcasts.jpg'
   },
 ]
 

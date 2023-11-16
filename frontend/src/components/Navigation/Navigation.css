@@ -11,10 +11,43 @@
 .navigation-container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    /* border-bottom: 1px solid #A991E5; */
+    background-color: #1E1B1B;
 }
 
 #logo {
     margin-left: 20px;
+    font-size: 40px;
+    color: #A991E5;
+}
+
+#logo:hover {
+    cursor: pointer;
+    color: green;
+
+}
+
+.profile-picture:hover {
+    cursor: pointer;
+}
+
+.profile-picture {
+    border-radius: 75px;
+    height: 50px;
+    width: 50px;
+}
+
+.profile-button-nav {
+    border-radius: 75px;
+    height: 71px;
+    width: 71px;
+}
+
+.nav-in-out-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .navigation-links {
@@ -24,7 +57,14 @@
     margin-right: 20px;
 }
 
+.nav-logged-out-links {
+    display: flex;
+    gap: 10px;
+}
+
 #nav-navlink {
     text-decoration: none;
     color: inherit;
+    font-size: 16px;
+    color: white;
 }

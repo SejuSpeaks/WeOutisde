@@ -1,0 +1,31 @@
+.join-button-landing-page-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+/* .section-2 {
+
+} */
+
+.landing-page-container {
+    background-color: #1E1B1B;
+    color: #FFF4F4;
+}
+
+.join-button-landing-page {
+    padding: 10px 40px;
+    font-weight: bold;
+    font-size: 23px;
+    color: white;
+    background-color: #A991E5;
+    border: none;
+    /* box-shadow: rgb(255, 255, 255) 5px 0px; */
+    border-radius: 10px;
+    margin-bottom: 30px;
+    margin-top: 25px;
+}
+
+.join-button-landing-page:hover {
+    cursor: pointer;
+}

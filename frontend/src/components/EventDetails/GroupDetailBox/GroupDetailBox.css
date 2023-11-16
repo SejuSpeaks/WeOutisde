@@ -1,0 +1,21 @@
+.group-container-event-detail-page {
+    display: flex;
+    border: solid 1px #A991E5;
+    border-radius: 5px;
+    align-items: center;
+    padding: 10px 12px;
+}
+
+.image-group-box-event-detail {
+    height: 60px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 60px;
+    border-radius: 2px;
+}
+
+.group-description-event-detail-page {
+    display: flex;
+    flex-direction: column;
+    line-height: 8px;
+}

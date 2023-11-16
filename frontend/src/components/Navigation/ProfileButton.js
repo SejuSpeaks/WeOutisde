@@ -9,8 +9,6 @@ const ProfileButton = ({ user }) => {
     const [showMenu, setShowMenue] = useState(false);
     const ulRef = useRef();
 
-    console.log('USER', user)
-
     const logout = () => {
         // e.preventDefault();
         dispatch(sessionActions.sessionRemove());
@@ -44,13 +42,20 @@ const ProfileButton = ({ user }) => {
 
     return (
         <div>
-            <button onClick={openMenu}>
-                <i className="fa-regular fa-circle-user"></i>
-            </button>
+            {/* <button className="profile-button-nav" onClick={openMenu}> */}
+            {/* <i className="fa-regular fa-circle-user"></i> */}
+            <img className="profile-picture" onClick={openMenu} src="https://img.olympics.com/images/image/private/t_s_w960/t_s_16_9_g_auto/f_auto/primary/jdgk0totpvbrarqpbs09" />
+            {/* </button> */}
             <ul className={dropDownClassName} ref={ulRef}>
                 <li>{user.username}</li>
-                <li>{user.firstName} {user.lastName}</li>
-                <li>{user.email}</li>
+                <li>Hello, {user.firstName} {user.lastName}</li>
+                <li>Email: {user.email}</li>
+                <li>
+                    <button onClick={() => history.push('/groups')}>View Groups</button>
+                </li>
+                <li>
+                    <button onClick={() => history.push('/events')}>View Events</button>
+                </li>
                 <li>
                     <button onClick={logout}>Log Out</button>
                 </li>

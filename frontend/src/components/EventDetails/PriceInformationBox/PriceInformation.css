@@ -1,0 +1,46 @@
+.price-information-box-event-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-radius: 5px;
+    font-size: 20px;
+    border: solid 1px #A991E5;
+    line-height: 17px;
+    padding: 12px 5px;
+}
+
+.time-box-event-details {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 10px;
+}
+
+.dot-container {
+    display: flex;
+    align-items: center;
+}
+
+.event-start-end-times-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.time-containers {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+
+.price-of-event-container {
+    display: flex;
+    gap: 10px;
+    margin-left: 10px;
+}
+
+.type-of-event-container {
+    display: flex;
+    gap: 10px;
+    margin-left: 10px;
+}

@@ -1,0 +1,35 @@
+.section3-content-container {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.landing-page-links {
+    color: #A991E5;
+    font-weight: bold;
+}
+
+.landing-page-links:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.landing-page-linksdisabled {
+    color: lightgray;
+}
+
+.section3-landing-page-container:hover {
+    cursor: pointer;
+}
+
+.section-3-images {
+    height: 80px;
+    width: 80px;
+}
+
+.section-3-image-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

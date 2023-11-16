@@ -15,8 +15,8 @@ const ValidateGroup = [
         .withMessage('Name must be 60 characters or less'),
     check('about')
         .exists({ checkFalsy: true })
-        .isLength({ min: 50 })
-        .withMessage('About must be 50 characters or more'),
+        .isLength({ min: 30 })
+        .withMessage('About must be 30 characters or more'),
     check('type')
         .exists({ checkFalsy: true })
         .isIn(['Online', 'In person'])
@@ -62,12 +62,7 @@ const validateEvent = [
         .isIn(['Online', 'In person'])
         .exists({ checkFalsy: true })
         .withMessage('Type must be Online or In person'),
-    check('capacity')
-        .isInt()
-        .exists({ checkFalsy: true })
-        .withMessage('Capacity must be an integer'),
     check('price')
-        .isFloat({ min: 0 })
         .exists({ checkFalsy: true })
         .withMessage('Price is invalid'),
     check('description')
@@ -88,6 +83,9 @@ const validateEvent = [
             if (Date.parse(startDate) > Date.parse(value)) throw new Error('End date is less than Start date')
             return true
         }),
+    check('previewImage')
+        .exists({ checkFalsy: true })
+        .withMessage("Please set an image for event"),
     handleValidationErrors
 ];
 
@@ -113,7 +111,7 @@ const validateQuery = [
 
 router.post('/', requireAuth, ValidateGroup, async (req, res) => {
     if (req.user) {
-        const { name, about, type, private, city, state } = req.body
+        const { name, about, type, private, city, state, previewImage } = req.body
         const newGroup = await Group.create({
             organizerId: req.user.id,
             name: name,
@@ -121,7 +119,8 @@ router.post('/', requireAuth, ValidateGroup, async (req, res) => {
             type: type,
             private: private,
             city: city,
-            state: state
+            state: state,
+            previewImage: previewImage
         })
         res.status(201);
         return res.json(newGroup)
@@ -130,11 +129,16 @@ router.post('/', requireAuth, ValidateGroup, async (req, res) => {
 
 router.get('/', async (req, res) => {
     const groups = await Group.findAll({
-        include: [{
-            model: User,
-            as: 'Members',
-            attributes: [],
-        }],
+        include: [
+            {
+                model: User,
+                as: 'Members',
+                attributes: [],
+            },
+            {
+                model: Event //included events
+            }
+        ],
         attributes: {
             include: [
                 [
@@ -212,6 +216,9 @@ router.get('/:groupId', async (req, res) => { //fix
                 model: Venue,
                 as: 'Venues'
             },
+            {
+                model: Event
+            }
 
         ],
         attributes: {
@@ -402,12 +409,12 @@ router.get('/:groupId/events', async (req, res) => {
             }
         ],
         attributes: {
-            exclude: ['description', 'capacity', 'createdAt', 'updatedAt'],
+            exclude: ['capacity', 'createdAt', 'updatedAt'],
             include: [[sequelize.fn('COUNT', sequelize.col('attendee.id')), 'numAttending']]
         },
         group: [
             'Event.id',
-            'Venues.id',
+            //'Venues.id',
             'Group.id',
             'attendee.Attendee.id'
         ]
@@ -480,7 +487,7 @@ router.post('/:groupId/venues', requireAuth, validateVenue, async (req, res) => 
 router.post('/:groupId/events', requireAuth, validateEvent, async (req, res) => { //fix
     let status;
     const { user } = req
-    const { name, type, capacity, price, description, startDate, endDate } = req.body
+    const { name, type, capacity, price, description, startDate, startTime, endTime, previewImage, endDate } = req.body
     const group = await Group.findByPk(req.params.groupId, { include: [{ model: User, as: 'Members' }, { model: Venue, as: 'Venues', attributes: ['id'] }] });
     //group couldnt be found
     if (!group) {
@@ -488,7 +495,8 @@ router.post('/:groupId/events', requireAuth, validateEvent, async (req, res) => 
         res.json({ message: "Group couldn't be found" })
     }
 
-    const venueId = group.Venues[0].id
+    // const venueId = group.Venues[0].id
+
     //find membership status of user
     const membershipStatusOfUser = await Membership.findOne({
         where: { userId: req.user.id, groupId: req.params.groupId }
@@ -500,14 +508,17 @@ router.post('/:groupId/events', requireAuth, validateEvent, async (req, res) => 
         if (group.organizerId === user.id || status === 'co-host') {
             const event = Event.build({
                 groupId: group.id,
-                venueId: venueId,
+                // venueId: venueId,
                 name: name,
                 type: type,
-                capacity: capacity,
                 price: price,
                 description: description,
+                host: user.id,
                 startDate: startDate,
-                endDate: endDate
+                startTime: startTime,
+                endTime: endTime,
+                endDate: endDate,
+                previewImage: previewImage,
             })
 
             await event.validate()

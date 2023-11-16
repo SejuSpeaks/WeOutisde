@@ -1,0 +1,85 @@
+.group-details-block-container {
+    display: flex;
+    justify-content: center;
+}
+
+
+.group-details-image-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.group-details-show-name {
+    text-wrap: nowrap;
+    font-size: 30px;
+}
+
+.group-details-image {
+    width: 480px;
+    /* Set the desired width */
+    height: 300px;
+    /* Set the desired height */
+}
+
+.group-details-description-container {
+    margin-left: 25px;
+    /* border: 1px solid #A991E5; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0px 30px;
+}
+
+.group-details-CRUD {
+    color: white;
+    background-color: #433F3F;
+    border: 1px solid #F5F5F5;
+    box-shadow: 1px 2px #F5F5F5;
+}
+
+.group-details-CRUD:hover {
+    color: white;
+    background-color: #433F3F;
+    border: 1px solid #F5F5F5;
+    box-shadow: 1px 0px #F5F5F5;
+}
+
+.group-details-CRUDdisable {
+    display: none;
+}
+
+.buttons-container-group-details {
+    margin-top: 10px;
+    display: flex;
+    gap: 5px;
+}
+
+#organizer-name-group-details {
+    margin: 0px;
+    text-align: center;
+    text-wrap: nowrap;
+}
+
+#breadcrum-groups-container {
+    display: flex;
+    justify-content: center;
+
+}
+
+#join-group-button {
+    background-color: red;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#join-group-buttondisable {
+    display: none;
+}
+
+#dot-container {
+    display: inline;
+    position: relative;
+    bottom: 5px;
+}

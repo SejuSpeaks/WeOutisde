@@ -1,7 +1,7 @@
 import React from "react"
 import { useModal } from "../../context/Modal";
 
-const OpenModalButton = ({ modalComponent, buttonText, onButtonClick, onModalClose }) => {
+const OpenModalButton = ({ modalComponent, buttonText, onButtonClick, onModalClose, className }) => {
     const { setModalContent, setOnModalClose } = useModal()
 
     const onClick = () => {
@@ -12,7 +12,7 @@ const OpenModalButton = ({ modalComponent, buttonText, onButtonClick, onModalClo
 
 
     return (
-        <button onClick={onClick}>{buttonText}</button>
+        <button onClick={onClick} className={className}>{buttonText}</button>
     )
 }
 
