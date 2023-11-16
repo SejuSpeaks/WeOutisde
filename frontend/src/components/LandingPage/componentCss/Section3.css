@@ -19,17 +19,17 @@
     color: lightgray;
 }
 
+.section3-landing-page-container:hover {
+    cursor: pointer;
+}
+
 .section-3-images {
-    height: 120px;
-    width: 120px;
+    height: 80px;
+    width: 80px;
 }
 
 .section-3-image-text-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.section3-content-container:hover {
-    cursor: pointer;
 }

@@ -1,6 +1,6 @@
 .group-container-event-detail-page {
     display: flex;
-    background-color: lightgrey;
+    border: solid 1px #A991E5;
     border-radius: 5px;
     align-items: center;
     padding: 10px 12px;

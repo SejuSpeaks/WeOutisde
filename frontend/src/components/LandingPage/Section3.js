@@ -13,6 +13,7 @@ const Section3 = () => {
 
 
     const newGroupClass = "landing-page-links" + (!user ? "disabled" : "")
+    const startNewGroupDiv = "section3-landing-page-container" + (!user ? "disabled" : "")
 
     const disableCreateGroups = () => {
         if (newGroupClass === 'landing-page-linksdisabled') {
@@ -41,10 +42,10 @@ const Section3 = () => {
                 <p>Come check out new Events blah blah blah</p>
             </div>
 
-            <div className="section3-landing-page-container">
+            <div className={startNewGroupDiv}>
                 <div className='section-3-image-text-container'>
                     <img className='section-3-images' src={myImage}></img>
-                    <p className={newGroupClass} onClick={() => disableCreateGroups()} >Start a new group</p>
+                    <p className={newGroupClass} onClick={() => disableCreateGroups()} >Start a group</p>
                 </div>
                 <p>Come check out new groups blah blah blah</p>
             </div>

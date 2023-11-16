@@ -42,6 +42,7 @@ const CreateEvent = () => {
         const endDate = eventEnd.split(" ")[0]
         const endTime = eventEnd.split(" ")[1]
 
+
         //add host to event
 
         const createdEvent = {

@@ -5,7 +5,8 @@ const GET_GROUP_EVENTS = 'events/GET_GROUP_EVENTS';
 const GET_ALL_EVENTS = 'events/GET_ALL_EVENTS';
 const GET_EVENT_BY_ID = 'events/GET_EVENT_BY_ ID';
 const CLEAR_EVENTS = 'events/CLEAR_EVENTS';
-const CREATE_EVENT = 'events/CREATE'
+const CREATE_EVENT = 'events/CREATE';
+const DELETE_EVENT = 'events/DELETE';
 
 /*-----------------------GET ALL EVENTS----------------------------------------------- */
 
@@ -113,9 +114,38 @@ export const createEvent = (groupId, event) => async dispatch => {
         return data.errors
     }
 }
+/*------------------------DELETE EVENT---------------------------------- */
+
+//action delete event
+const deleteAEvent = (eventDeleted) => {
+    return {
+        type: DELETE_EVENT,
+        eventDeleted
+    }
+}
+
+//thunk delete event
+export const deleteEvent = (eventId) => async dispatch => {
+    const res = await csrfFetch(`/api/events/${eventId}`, {
+        method: "DELETE",
+    })
+
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(deleteAEvent(data))
+        return data
+    }
+    else {
+        const data = await res.json()
+        return data.errors
+    }
+
+}
 
 
-/*-------------------------------------------------------- */
+
+
+/*--------------------------------------------------------------------- */
 
 
 /*Events reducer */
@@ -123,6 +153,9 @@ export const createEvent = (groupId, event) => async dispatch => {
 const events = (state = {}, action) => {
     let newState = { ...state }
     switch (action.type) {
+        case DELETE_EVENT:
+            delete newState[action.eventDeleted.id]
+            return newState
         case CREATE_EVENT:
             newState[action.eventCreated.id] = action.eventCreated
             return newState;

@@ -1,10 +1,10 @@
 .event-container-all-events {
     display: flex;
     flex-direction: column;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border: 1px solid #A991E5;
     margin: 20px 0px;
     padding: 10px 12px;
+    color: white;
 }
 
 .event-top-half-container {

@@ -161,7 +161,7 @@ const UpdateGroup = () => {
                         </div>
 
                         <div>
-                            <button>Create Group</button>
+                            <button>Update Group</button>
                         </div>
                     </div>
                 </form>

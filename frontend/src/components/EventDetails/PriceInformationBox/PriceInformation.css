@@ -4,7 +4,7 @@
     gap: 15px;
     border-radius: 5px;
     font-size: 20px;
-    background-color: lightgray;
+    border: solid 1px #A991E5;
     line-height: 17px;
     padding: 12px 5px;
 }
@@ -24,7 +24,6 @@
 .event-start-end-times-container {
     display: flex;
     flex-direction: column;
-    color: darkblue;
 }
 
 .time-containers {

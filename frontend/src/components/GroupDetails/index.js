@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
 import { grabGroup } from "../../store/groups";
+import './index.css'
 
 //componenets
 import GroupDetailsBlock from "./detailsComponenets/GroupDetailsBlock/GroupDetailsBlock";
@@ -25,7 +26,7 @@ const GroupDetails = () => {
     return (
         <>
             {isLoaded && (
-                <div>
+                <div className="group-details-page-container">
                     <GroupDetailsBlock group={group} />
                     <WhatWeAbout group={group} />
                 </div>

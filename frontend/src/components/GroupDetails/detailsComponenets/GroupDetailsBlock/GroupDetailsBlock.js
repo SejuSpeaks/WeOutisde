@@ -25,10 +25,11 @@ const GroupDetailsBlock = ({ group }) => {
                 </div>
 
                 <div className="group-details-description-container">
-                    <p className='group-show-name '>{group.name}</p>
+                    <p className='group-details-show-name '>{group.name}</p>
                     <p className='group-show-city'>{group.city}</p>
+                    <p id='organizer-name-group-details'>Organized by {nameOfOrganizer}</p>
 
-                    <div className="group-details-description-container">
+                    <div className="group-details-description-innercontainer">
                         <span>{group.Events?.length}</span>
                         <label>events</label>
 
@@ -37,13 +38,15 @@ const GroupDetailsBlock = ({ group }) => {
                         </div>
 
                         <span>{privacy}</span>
-                        <p>Organized by {nameOfOrganizer}</p>
                     </div>
 
-                    <button onClick={() => alert("Feature coming soon")} id={joinGroupClassName}>Join Group</button>
-                    <button className={crudButtonsClass} onClick={() => history.push(`/groups/${group.id}/update`)}>Update</button>
-                    <OpenModalButton className={crudButtonsClass} buttonText={"Delete"} modalComponent={<GroupConfirmDelete group={group} />} />
-                    <button className={crudButtonsClass} onClick={() => history.push(`/${group.id}/events/new`)}>Create Event</button>
+                    <div className='buttons-container-group-details'>
+                        <button onClick={() => alert("Feature coming soon")} id={joinGroupClassName}>Join Group</button>
+                        <button className={crudButtonsClass} onClick={() => history.push(`/groups/${group.id}/update`)}>Update</button>
+                        <OpenModalButton className={crudButtonsClass} buttonText={"Delete"} modalComponent={<GroupConfirmDelete group={group} />} />
+                        <button className={crudButtonsClass} onClick={() => history.push(`/${group.id}/events/new`)}>Create Event</button>
+
+                    </div>
                 </div>
             </div>
         </>

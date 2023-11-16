@@ -24,7 +24,7 @@ const SignUp = () => {
 
 
     useEffect(() => {
-        if (!username.length || !firstName.length || !lastName.length || !email.length || !password.length || !confirmPassword.length || password.length < 6 || username < 4) {
+        if (!username.length || !firstName.length || !lastName.length || !email.length || !password.length || !confirmPassword.length || password.length < 6 || username.length < 4) {
             setDisableButton(true)
         }
         else {

@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { getEventById } from "../../../store/events";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import OpenModalButton from "../../OpenModalButton";
 
 import './DetailsOfEvent.css'
 
@@ -10,6 +11,7 @@ import DetailsOfEventHeader from '../DetailsOfEventHeader/DetailsOfEventHeader'
 import GroupDetailsBox from "../GroupDetailBox/GroupDetailBox";
 import PriceInformation from "../PriceInformationBox/PriceInformation";
 import EventDescription from "../EventDescription/EventDescription";
+import EventConfirmDelete from "../../EventConfirmDelete";
 
 const DetailsOfEvent = () => {
     const dispatch = useDispatch();
@@ -46,7 +48,7 @@ const DetailsOfEvent = () => {
                                 <GroupDetailsBox event={event} />
                                 <PriceInformation event={event} />
                                 <button className={buttonClassName}>Update</button>
-                                <button className={buttonClassName}>Delete</button>
+                                <OpenModalButton className={buttonClassName} buttonText={'Delete'} modalComponent={<EventConfirmDelete event={event} />} />
                             </div>
 
                         </div>

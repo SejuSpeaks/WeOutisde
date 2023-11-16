@@ -9,7 +9,7 @@ const WhatWeAbout = ({ group }) => {
 
                 <div>
                     <b>Organizer</b>
-                    <p>{group.Organizer.username}</p>
+                    <p>{`${group.Organizer.firstName} ${group.Organizer.lastName}`}</p>
                 </div>
 
                 <div>

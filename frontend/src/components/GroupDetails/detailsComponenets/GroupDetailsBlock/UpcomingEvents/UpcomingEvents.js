@@ -53,7 +53,7 @@ const UpComingEvents = ({ group }) => {
         .map((event, index) => (
             <div key={index} className="upcoming-events-container" onClick={() => history.push(`/events/${event.id}`)}>
                 <div>
-                    <img src={event.eventImage} />
+                    <img className="event-image-upcoming-events" src={event.eventImage} />
                 </div>
                 {event.description}
                 <div>

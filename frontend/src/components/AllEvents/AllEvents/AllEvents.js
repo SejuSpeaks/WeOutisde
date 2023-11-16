@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { getAllEvents } from '../../../store/events';
+import { getAllEvents, clearEvents } from '../../../store/events';
 
 
 import './AllEvents.css';
@@ -20,6 +20,7 @@ const AllEvents = () => {
     const events = useSelector(state => state.events);
 
     useEffect(() => {
+        dispatch(clearEvents())
         dispatch(getAllEvents())
             .then(() => setIsLoaded(true))
     }, [dispatch])

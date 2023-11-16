@@ -2,6 +2,10 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    /* min-width: 100vh; */
+    width: 100vh;
+    align-items: center;
+    border-bottom: solid 1px black;
 }
 
 .groups-inactive-link {
@@ -12,9 +16,11 @@
 #container-for-group-page-links {
     display: flex;
     gap: 15px;
+    font-size: 27px;
 }
 
 #all-groups-caption {
-    font-size: 12px;
+    font-size: 17px;
     color: lightgrey;
+    margin-bottom: 25px;
 }

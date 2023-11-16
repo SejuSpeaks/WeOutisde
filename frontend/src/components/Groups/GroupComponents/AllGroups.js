@@ -24,7 +24,7 @@ const AllGroups = () => {
         const privacy = group.private ? "Private" : "Public";
 
         return (
-            <Link to={`/groups/${group.id}`} key={group.id} >
+            <Link className='link-for-group-show' to={`/groups/${group.id}`} key={group.id} >
                 <div className="group-show-container">
 
                     <div className="group-show-image-container">
