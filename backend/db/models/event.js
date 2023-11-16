@@ -50,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    price: DataTypes.FLOAT,
+    price: DataTypes.INTEGER,
     startDate: {
       type: DataTypes.STRING,
       validate: {

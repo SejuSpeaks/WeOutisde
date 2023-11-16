@@ -63,7 +63,6 @@ const validateEvent = [
         .exists({ checkFalsy: true })
         .withMessage('Type must be Online or In person'),
     check('price')
-        .isFloat({ min: 0 })
         .exists({ checkFalsy: true })
         .withMessage('Price is invalid'),
     check('description')
