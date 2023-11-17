@@ -5,9 +5,11 @@ const DetailsOfEvent = ({ event }) => {
 
     return (
         <div className="event-details-header-containerr">
-            <Link to='/events'>Events</Link>
-            <h1>{event.name}</h1>
-            <span>Hosted by {`${event.Host.firstName} ${event.Host.lastName}`}</span>
+            <div>
+                <Link to='/events'>Events</Link>
+                <h1>{event.name}</h1>
+                <span>Hosted by {`${event.Host.firstName} ${event.Host.lastName}`}</span>
+            </div>
         </div>
     )
 }
