@@ -416,7 +416,7 @@ router.get('/:groupId/events', async (req, res) => {
         },
         group: [
             'Event.id',
-            //'Venues.id',
+            'Venue.id',
             'Group.id',
             'attendee.Attendee.id'
         ]
