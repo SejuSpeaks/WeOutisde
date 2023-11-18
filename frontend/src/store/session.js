@@ -17,7 +17,7 @@ const setUser = (user) => {
 
 export const setUserThunk = (userLoginInformation) => async dispatch => {
 
-    const response = await csrfFetch('api/session', {
+    const response = await csrfFetch('/api/session', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -55,7 +55,8 @@ export const signUp = (userPayload) => async dispatch => {
         return data.user;
     }
     else {
-        return response;
+        const data = await response.json();
+        return data.errors;
     }
 }
 

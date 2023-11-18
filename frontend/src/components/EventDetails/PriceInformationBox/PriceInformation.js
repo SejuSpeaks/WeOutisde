@@ -34,12 +34,12 @@ const PriceInformation = ({ event }) => {
 
                 <div className='price-of-event-container'>
                     <i className="fa-regular fa-money-bill-1"></i>
-                    <p>{event.price === 0 ? 'FREE' : event.price}</p>
+                    <p>{event.price === 0 ? 'FREE' : `$ ${event.price}`}</p>
                 </div>
 
                 <div className='type-of-event-container'>
-                    <i class="fa-regular fa-location-arrow"></i>
-                    <p>{event.type ? 'Public' : 'Private'}</p>
+                    <i className="fa-regular fa-location-dot"></i>
+                    <p>{event.type}</p>
                 </div>
             </div>
         </>

@@ -95,7 +95,7 @@ const UpdateGroup = () => {
                 <form onSubmit={onSubmit}>
                     <div className='create-group-form-container'>
                         <div className='create-group-form-heading'>
-                            <p>Start new Group</p>
+                            <p>Update Group</p>
                             <b>We'll walk you through a few steps to build your local community</b>
                         </div>
 

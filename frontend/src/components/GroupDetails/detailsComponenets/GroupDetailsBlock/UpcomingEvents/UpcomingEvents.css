@@ -6,3 +6,8 @@
     height: 201px;
     width: 380px;
 }
+
+.dates-of-event-container-group-details {
+    display: flex;
+    align-items: center;
+}

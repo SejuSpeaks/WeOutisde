@@ -55,13 +55,18 @@ const UpComingEvents = ({ group }) => {
                 <div>
                     <img className="event-image-upcoming-events" src={event.eventImage} />
                 </div>
-                {event.description}
                 <div>
-                    <date>{`${event.startDate.toDateString()} ${event.startTime}`}</date>
                     <b>{event.name}</b>
+                    <div className="dates-of-event-container-group-details">
+                        <p>{`${event.startDate.toDateString()}`}</p>
+                        <p className="dot">.</p>
+                        <p>{`${event.startTime}`}</p>
+                    </div>
+
                     <p>
                         {group.city} {group.state}
                     </p>
+                    {event.description}
                 </div>
             </div>
         ));

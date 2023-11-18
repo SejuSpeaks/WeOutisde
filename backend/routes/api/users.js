@@ -16,7 +16,7 @@ const validateSignup = [
     check('firstName')
         .exists({ checkFalsy: true })
         .isLength({ min: 4 })
-        .withMessage('First name is required'),
+        .withMessage('First name is required and has to be at least 4 characters'),
     check('lastName')
         .exists({ checkFalsy: true })
         .withMessage('Last name is required.'),

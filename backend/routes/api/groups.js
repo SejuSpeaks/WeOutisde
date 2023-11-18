@@ -63,7 +63,7 @@ const validateEvent = [
         .exists({ checkFalsy: true })
         .withMessage('Type must be Online or In person'),
     check('price')
-        .exists({ checkFalsy: true })
+        .isInt()
         .withMessage('Price is invalid'),
     check('description')
         .exists({ checkFalsy: true })
@@ -72,7 +72,7 @@ const validateEvent = [
         .custom((value) => {
             const currentDate = new Date();
             const startDate = new Date(value);
-            if (startDate <= currentDate) {
+            if (startDate < currentDate) {
                 throw new Error('Start date must be in the future');
             }
             return true;

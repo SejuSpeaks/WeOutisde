@@ -92,8 +92,8 @@ const CreateGroupForm = () => {
                         <input type='text' placeholder='City, STATE' value={location} onChange={(e) => setLocation(e.target.value)} />
                     </label>
                     <div>
-                        {validationErrors.city ?? ""}
-                        {validationErrors.state ?? ""}
+                        <p className='errors'>{validationErrors.city ?? ""}</p>
+                        <p className='errors'>{validationErrors.state ?? ""}</p>
                     </div>
                 </div>
 
@@ -106,7 +106,7 @@ const CreateGroupForm = () => {
                     <label>
                         <input type='text' placeholder='What is your group name?' value={name} onChange={(e) => setName(e.target.value)} />
                     </label>
-                    {validationErrors.name}
+                    <p className='errors'> {validationErrors.name}</p>
                 </div>
 
                 <div className='create-group-form-description form-input'>
@@ -118,7 +118,7 @@ const CreateGroupForm = () => {
                         <li>What will you do at your events?</li>
                     </ol>
                     <textarea placeholder='Please write at least 30 characters' value={aboutGroup} onChange={(e) => setAboutGroup(e.target.value)} />
-                    {validationErrors.about}
+                    <p className='errors'> {validationErrors.about}</p>
                 </div>
 
                 <div className='create-group-final-steps form-input'>
@@ -131,7 +131,7 @@ const CreateGroupForm = () => {
                         <option value="Online">Online</option>
 
                     </select>
-                    {validationErrors.type}
+                    <p className='errors'> {validationErrors.type}</p>
 
                     <label htmlFor='privacy'>Is this group private or public</label>
                     <select name='privacy' value={privacy} onChange={(e) => setPrivacy(e.target.value)}>
@@ -139,7 +139,7 @@ const CreateGroupForm = () => {
                         <option value={'false'}>Public</option>
                         <option value={'true'}>Private</option>
                     </select>
-                    {validationErrors.private}
+                    <p className='errors'> {validationErrors.private}</p>
 
                     <label htmlFor='group-image'>Please add an image url for your group below:</label>
                     <input name='group-image' type='text' placeholder='Image Url' value={imgUrl} onChange={(e) => setImgUrl(e.target.value)} />

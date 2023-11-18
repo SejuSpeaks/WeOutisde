@@ -82,9 +82,9 @@ const CreateEvent = () => {
     return (
         <>
             {isLoaded &&
-                <h1>{`Create a new Event for ${group.name}`}</h1>
+                <h1 id='create-event-title'>{`Create a new Event for ${group.name}`}</h1>
             }
-            <form onSubmit={onSubmit}>
+            <form className='event-form-container' onSubmit={onSubmit}>
                 <div className='create-event-form-container'>
                     <label className='form-input'>
                         What is the name of your event?
