@@ -1,10 +1,10 @@
 # WeOutside
 
 ## Description
-    WeOutside is a an application used to connect and bring people together through groups and events.
+    WeOutside is a dynamic app, strategically crafted to forge social bonds through meticulously curated groups and events, seamlessly connecting individuals for vibrant and engaging communal experiences.
 
 ## Technologies used
-    Javascript NodeJs React Redux Sequelize Postgress Html Css Git Vscode and express
+    [Javascript](https://logos-download.com/wp-content/uploads/2019/01/JavaScript_Logo.png) NodeJs React Redux Sequelize Postgress Html Css Git Vscode and express
 
 ## How to get started with project
 
