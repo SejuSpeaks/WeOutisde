@@ -35,3 +35,7 @@
 6. Start the backend server and the Frontend Server
     - `npm start`
     -  `npm start`
+      
+
+<img width="947" alt="Screenshot 2023-11-20 150436" src="https://github.com/SejuSpeaks/WeOutside/assets/80376392/61402c60-ec6a-47e9-ac1f-c0152ca36697">
+
